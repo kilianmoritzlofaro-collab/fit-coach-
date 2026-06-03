@@ -1,7 +1,7 @@
 {
   "name": "fitcoach",
   "version": "1.0.0",
-  "engines": {
-    "node": "18.x"
+  "dependencies": {
+    "node-fetch": "2.6.9"
   }
 }
