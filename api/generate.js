@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -20,9 +18,11 @@ module.exports = async function handler(req, res) {
     });
 
     const data = await response.json();
+    console.log('API response:', JSON.stringify(data).substring(0, 200));
     return res.status(200).json(data);
 
   } catch (err) {
+    console.error('Error:', err);
     return res.status(500).json({ error: err.message });
   }
 };
