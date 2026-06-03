@@ -435,7 +435,7 @@ async function generer(){
     else throw new Error('Format invalide');
   }catch(err){
     clearInterval(iv);
-    document.getElementById('gen-txt').textContent='Erreur : '+err.message;
+    document.getElementById('gen-txt').textContent='Erreur : '+err.message+' | '+JSON.stringify(err);
     document.getElementById('lbar-f').style.background='#ef4444';
   }
 }
