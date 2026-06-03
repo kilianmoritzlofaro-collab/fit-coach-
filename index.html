@@ -429,7 +429,7 @@ async function generer(){
     clearInterval(iv);
     document.getElementById('lbar-f').style.width='100%';
     document.getElementById('gen-txt').textContent='Programme généré ! 🎉';
-    const text=data.content[0].text;
+   const text = Array.isArray(data.content) && data.content.length > 0 ? data.content[0].text : JSON.stringify(data);
     const match=text.match(/\{[\s\S]*\}/);
     if(match){generatedProgram=JSON.parse(match[0]);setTimeout(()=>showPDF(),600);}
     else throw new Error('Format invalide');
