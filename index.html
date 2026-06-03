@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FitCoach</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
+.screen{display:none;flex-direction:column;min-height:100vh;padding:1.5rem;}
+.screen.active{display:flex;}
+.btn-p{background:#1a1a1a;color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:15px;font-weight:500;cursor:pointer;width:100%;margin-bottom:10px;}
+.btn-p:disabled{opacity:.35;cursor:default;}
+.btn-s{background:transparent;color:#1a1a1a;border:1px solid #d1d5db;border-radius:12px;padding:13px 20px;font-size:14px;cursor:pointer;width:100%;margin-bottom:10px;}
+.btn-back{background:transparent;border:none;color:#6b7280;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;margin-bottom:1.25rem;padding:0;}
+.title{font-size:21px;font-weight:500;margin-bottom:.4rem;}
+.sub{font-size:14px;color:#6b7280;margin-bottom:1.5rem;line-height:1.6;}
+.prog{display:flex;gap:5px;margin-bottom:1.75rem;}
+.prog-d{height:3px;flex:1;border-radius:99px;background:#e5e7eb;}
+.prog-d.on{background:#1a1a1a;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1rem;}
+.card-btn{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px 10px;font-size:13px;cursor:pointer;text-align:center;line-height:1.4;user-select:none;}
+.card-btn.sel{border:2px solid #1a1a1a;background:#f9fafb;font-weight:500;}
+.card-btn .ic{font-size:20px;display:block;margin-bottom:5px;}
+.inp-row{display:flex;gap:10px;margin-bottom:1rem;}
+.inp{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:20px;font-weight:500;text-align:center;flex:1;}
+.inp-unit{font-size:13px;color:#6b7280;align-self:center;}
+.sec-label{font-size:12px;font-weight:500;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin:.5rem 0 .6rem;}
+.check-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #f3f4f6;font-size:14px;cursor:pointer;user-select:none;}
+.check-row:last-child{border-bottom:none;}
+.chk{width:20px;height:20px;border-radius:4px;border:1px solid #d1d5db;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;}
+.chk.on{background:#1a1a1a;color:#fff;border-color:#1a1a1a;}
+.recap-card{background:#f9fafb;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1rem;}
+.recap-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f3f4f6;font-size:13px;}
+.recap-row:last-child{border-bottom:none;}
+.rl{color:#6b7280;}
+.rv{font-weight:500;text-align:right;max-width:60%;}
+.email-disp{background:#f9fafb;border:1px solid #1a1a1a;border-radius:8px;padding:13px 16px;font-size:15px;width:100%;margin-bottom:10px;min-height:48px;word-break:break-all;}
+.cursor{display:inline-block;width:2px;height:16px;background:#1a1a1a;margin-left:1px;vertical-align:middle;animation:blink 1s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.kbd-row{display:flex;gap:4px;justify-content:center;margin-bottom:4px;}
+.key{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 4px;font-size:13px;cursor:pointer;text-align:center;flex:1;min-width:0;user-select:none;}
+.key:active{transform:scale(.95);}
+.key.wide{flex:1.6;}
+.key.wider{flex:3.5;}
+.key.action{background:#1a1a1a;color:#fff;}
+.key.shortcut{font-size:10px;flex:1.4;}
+.note{background:#f9fafb;border-radius:8px;padding:.6rem 1rem;font-size:12px;color:#6b7280;line-height:1.5;margin-bottom:.75rem;}
+.lbar{height:4px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin-bottom:1.25rem;}
+.lbar-f{height:100%;background:#1a1a1a;border-radius:99px;width:0%;transition:width .5s ease;}
+.pdf-wrap{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1.25rem;margin-bottom:1rem;position:relative;overflow:hidden;max-height:420px;overflow-y:auto;}
+.wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-35deg);font-size:28px;font-weight:500;opacity:.05;white-space:nowrap;pointer-events:none;letter-spacing:3px;}
+.day-block{margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid #f3f4f6;}
+.day-block:last-child{border-bottom:none;margin-bottom:0;}
+.day-badge{background:#1a1a1a;color:#fff;border-radius:99px;padding:2px 10px;font-size:11px;display:inline-block;margin-bottom:.5rem;}
+.ex-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f9fafb;font-size:12px;}
+.ex-row:last-child{border-bottom:none;}
+.ex-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;color:#fff;background:#1a1a1a;}
+.ex-name{flex:1;padding:0 8px;font-weight:500;}
+.ex-sets{color:#6b7280;font-size:11px;white-space:nowrap;}
+.motiv-box{background:#f9fafb;border-left:3px solid #1a1a1a;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-bottom:1rem;font-size:12px;color:#374151;font-style:italic;line-height:1.6;}
+.hold-hint{font-size:11px;color:#d1d5db;text-align:center;margin-top:6px;}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div class="screen active" id="s-veille" style="padding:0;position:relative;">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;cursor:pointer;" onclick="go('s-home')">
+    <div style="font-size:44px;margin-bottom:1rem;">🏋️</div>
+    <div style="font-size:22px;font-weight:500;margin-bottom:.4rem;" id="v-salle">FitCoach</div>
+    <div style="font-size:14px;color:#6b7280;margin-bottom:2rem;">Votre programme personnalisé en 2 minutes</div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:280px;margin-bottom:2rem;">
+      <div style="display:flex;align-items:center;gap:10px;background:#f9fafb;border-radius:12px;padding:10px 14px;font-size:13px;color:#6b7280;">💪 Programme de musculation adapté</div>
+      <div style="display:flex;align-items:center;gap:10px;background:#f9fafb;border-radius:12px;padding:10px 14px;font-size:13px;color:#6b7280;">❤️ Cardio & perte de poids</div>
+      <div style="display:flex;align-items:center;gap:10px;background:#f9fafb;border-radius:12px;padding:10px 14px;font-size:13px;color:#6b7280;">📧 Reçu par email en PDF</div>
+    </div>
+    <div style="background:#1a1a1a;color:#fff;border-radius:12px;padding:14px 40px;font-size:16px;font-weight:500;">Touchez pour commencer</div>
+  </div>
+  <div style="position:absolute;bottom:0;right:0;width:60px;height:60px;cursor:pointer;display:flex;align-items:flex-end;justify-content:flex-end;padding:10px;"
+    onmousedown="startHold()" onmouseup="cancelHold()" onmouseleave="cancelHold()"
+    ontouchstart="startHold()" ontouchend="cancelHold()">
+    <div style="width:14px;height:14px;border-radius:50%;border:1.5px solid #d1d5db;overflow:hidden;">
+      <div id="hold-fill" style="width:0%;height:100%;background:#1a1a1a;"></div>
+    </div>
+  </div>
+  <div class="hold-hint">Maintenez le coin ↘ pour l'espace gérant</div>
+</div>
+
+<div class="screen" id="s-home">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <div style="font-size:36px;margin-bottom:.75rem;">🏋️</div>
+      <div style="font-size:22px;font-weight:500;margin-bottom:.25rem;" id="h-salle">FitCoach</div>
+      <div style="font-size:14px;color:#6b7280;">Programme personnalisé en 2 minutes</div>
+    </div>
+    <button class="btn-p" onclick="go('s-1')">→ Créer mon programme</button>
+  </div>
+</div>
+
+<div class="screen" id="s-1">
+  <button class="btn-back" onclick="go('s-home')">← Retour</button>
+  <div class="prog" id="p1"></div>
+  <div class="title">Quel est votre objectif ?</div>
+  <div class="sub">Choisissez ce qui vous correspond le mieux.</div>
+  <div class="grid2">
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="prise de muscle"><span class="ic">💪</span>Prise de muscle</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="perte de poids"><span class="ic">🔥</span>Perte de poids</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="cardio et endurance"><span class="ic">❤️</span>Cardio</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="forme générale"><span class="ic">⭐</span>Forme générale</div>
+  </div>
+  <button class="btn-p" id="b1" disabled onclick="go('s-2')">Continuer</button>
+</div>
+
+<div class="screen" id="s-2">
+  <button class="btn-back" onclick="go('s-1')">← Retour</button>
+  <div class="prog" id="p2"></div>
+  <div class="title">Votre profil</div>
+  <div class="sec-label">Genre</div>
+  <div class="grid3" style="margin-bottom:1.25rem;">
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="homme"><span class="ic">👨</span>Homme</div>
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="femme"><span class="ic">👩</span>Femme</div>
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="autre"><span class="ic">🧑</span>Autre</div>
+  </div>
+  <div class="sec-label">Priorité corps</div>
+  <div class="grid3" style="margin-bottom:.75rem;">
+    <div class="card-btn" id="prio-haut" onclick="selPrio('haut')"><span class="ic">⬆️</span>Haut</div>
+    <div class="card-btn" id="prio-bas" onclick="selPrio('bas')"><span class="ic">⬇️</span>Bas</div>
+    <div class="card-btn" id="prio-tout" onclick="selPrio('tout')"><span class="ic">↕️</span>Les deux</div>
+  </div>
+  <div class="note" id="prio-note" style="display:none;"></div>
+  <button class="btn-p" id="b2" disabled onclick="go('s-3')">Continuer</button>
+</div>
+
+<div class="screen" id="s-3">
+  <button class="btn-back" onclick="go('s-2')">← Retour</button>
+  <div class="prog" id="p3"></div>
+  <div class="title">Votre morphologie</div>
+  <div class="sub">Ces données sont supprimées après envoi.</div>
+  <div class="inp-row"><input class="inp" type="number" id="taille" placeholder="175"/><span class="inp-unit">cm</span></div>
+  <div class="inp-row"><input class="inp" type="number" id="poids" placeholder="75"/><span class="inp-unit">kg</span></div>
+  <div class="inp-row"><input class="inp" type="number" id="age" placeholder="30"/><span class="inp-unit">ans</span></div>
+  <button class="btn-p" onclick="go('s-4')">Continuer</button>
+</div>
+
+<div class="screen" id="s-4">
+  <button class="btn-back" onclick="go('s-3')">← Retour</button>
+  <div class="prog" id="p4"></div>
+  <div class="title">Votre niveau</div>
+  <div class="sub">Soyez honnête pour un programme vraiment adapté.</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1.25rem;">
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="débutant"><strong>Débutant</strong><br><span style="font-size:11px;color:#6b7280;">Moins de 6 mois de pratique</span></div>
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="intermédiaire"><strong>Intermédiaire</strong><br><span style="font-size:11px;color:#6b7280;">6 mois à 2 ans de pratique</span></div>
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="avancé"><strong>Avancé</strong><br><span style="font-size:11px;color:#6b7280;">Plus de 2 ans de pratique régulière</span></div>
+  </div>
+  <button class="btn-p" id="b4" disabled onclick="go('s-5')">Continuer</button>
+</div>
+
+<div class="screen" id="s-5">
+  <button class="btn-back" onclick="go('s-4')">← Retour</button>
+  <div class="prog" id="p5"></div>
+  <div class="title">Votre planning</div>
+  <div class="sec-label">Jours par semaine</div>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:1.5rem;">
+    <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="1">1</div>
+    <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="2">2</div>
+    <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="3">3</div>
+    <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="4">4</div>
+    <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="5">5</div>
+    <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="6">6</div>
+    <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="7">7</div>
+  </div>
+  <div class="sec-label">Durée par séance</div>
+  <div class="grid2" style="margin-bottom:1.25rem;">
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="30 minutes">30 min</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="45 minutes">45 min</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="1 heure">1 heure</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="1h30">1h30</div>
+  </div>
+  <button class="btn-p" id="b5" disabled onclick="go('s-6')">Continuer</button>
+</div>
+
+<div class="screen" id="s-6">
+  <button class="btn-back" onclick="go('s-5')">← Retour</button>
+  <div class="prog" id="p6"></div>
+  <div class="title">Équipements souhaités</div>
+  <div class="sub">Sélectionnez tout ce que vous voulez utiliser.</div>
+  <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:1.25rem;">
+    <div class="check-row" onclick="togEquip('machines guidées','m')"><div class="chk" id="ce-m"></div><div><div style="font-weight:500;">Machines guidées</div><div style="font-size:12px;color:#6b7280;">Leg press, poulie, chest press...</div></div></div>
+    <div class="check-row" onclick="togEquip('poids libres','l')"><div class="chk" id="ce-l"></div><div><div style="font-weight:500;">Poids libres</div><div style="font-size:12px;color:#6b7280;">Haltères, barres, cage à squat...</div></div></div>
+    <div class="check-row" onclick="togEquip('cardio','c')"><div class="chk" id="ce-c"></div><div><div style="font-weight:500;">Cardio</div><div style="font-size:12px;color:#6b7280;">Rameur, vélo...</div></div></div>
+  </div>
+  <button class="btn-p" id="b6" disabled onclick="go('s-7')">Continuer</button>
+</div>
+
+<div class="screen" id="s-7">
+  <button class="btn-back" onclick="go('s-6')">← Retour</button>
+  <div class="prog" id="p7"></div>
+  <div class="title">Zones sensibles</div>
+  <div class="sub">Avez-vous une douleur ou blessure nécessitant d'éviter certains exercices ?</div>
+  <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:1.25rem;">
+    <div class="check-row" onclick="togZone('aucune')"><div class="chk" id="z-aucune"></div><span>Aucune zone à éviter</span></div>
+    <div class="check-row" onclick="togZone('dos')"><div class="chk" id="z-dos"></div><span>Dos / colonne vertébrale</span></div>
+    <div class="check-row" onclick="togZone('genoux')"><div class="chk" id="z-genoux"></div><span>Genoux</span></div>
+    <div class="check-row" onclick="togZone('epaules')"><div class="chk" id="z-epaules"></div><span>Épaules</span></div>
+    <div class="check-row" onclick="togZone('poignets')"><div class="chk" id="z-poignets"></div><span>Poignets / coudes</span></div>
+    <div class="check-row" onclick="togZone('hanches')"><div class="chk" id="z-hanches"></div><span>Hanches / chevilles</span></div>
+  </div>
+  <button class="btn-p" id="b7" disabled onclick="go('s-8')">Continuer</button>
+</div>
+
+<div class="screen" id="s-8">
+  <button class="btn-back" onclick="go('s-7')">← Retour</button>
+  <div class="prog" id="p8"></div>
+  <div class="title">Recevoir mon programme</div>
+  <div class="recap-card">
+    <div class="recap-row"><span class="rl">Objectif</span><span class="rv" id="r-obj">—</span></div>
+    <div class="recap-row"><span class="rl">Profil</span><span class="rv" id="r-genre">—</span></div>
+    <div class="recap-row"><span class="rl">Morphologie</span><span class="rv" id="r-morpho">—</span></div>
+    <div class="recap-row"><span class="rl">Niveau</span><span class="rv" id="r-niv">—</span></div>
+    <div class="recap-row"><span class="rl">Planning</span><span class="rv" id="r-plan">—</span></div>
+    <div class="recap-row"><span class="rl">Équipements</span><span class="rv" id="r-equip">—</span></div>
+  </div>
+  <div class="email-disp" id="email-disp"><span class="cursor"></span></div>
+  <div id="kbd-zone"></div>
+  <div class="note" style="margin-top:8px;">🔒 Données supprimées après envoi. <span style="cursor:pointer;color:#111;" onclick="togCGU()"><span id="cgu-chk">☐</span> J'accepte</span></div>
+  <button class="btn-p" id="b8" disabled onclick="generer()" style="margin-top:8px;">✨ Générer mon programme avec l'IA</button>
+</div>
+
+<div class="screen" id="s-gen">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
+    <div style="font-size:40px;margin-bottom:1rem;">🤖</div>
+    <div class="title" style="text-align:center;">L'IA génère votre programme</div>
+    <div class="sub" style="text-align:center;" id="gen-txt">Analyse de votre profil...</div>
+    <div class="lbar" style="margin:1.5rem 0;"><div class="lbar-f" id="lbar-f"></div></div>
+    <div style="font-size:12px;color:#6b7280;" id="gen-step">Étape 1/5</div>
+  </div>
+</div>
+
+<div class="screen" id="s-pdf">
+  <div class="title" style="margin-bottom:.25rem;">Votre programme ✅</div>
+  <div class="sub" style="margin-bottom:.75rem;">Généré par l'IA • Prêt à envoyer</div>
+  <div class="pdf-wrap">
+    <div class="wm">FitCoach</div>
+    <div style="position:relative;z-index:1;">
+      <div style="text-align:center;padding-bottom:.75rem;border-bottom:1px solid #f3f4f6;margin-bottom:.75rem;">
+        <div style="font-size:12px;color:#6b7280;" id="pdf-salle">FitCoach</div>
+        <div style="font-size:18px;font-weight:600;">FitCoach</div>
+        <div style="height:2px;width:36px;margin:.5rem auto;background:#1a1a1a;border-radius:99px;"></div>
+        <div style="font-size:11px;color:#6b7280;" id="pdf-date"></div>
+      </div>
+      <div class="motiv-box" id="pdf-motiv"></div>
+      <div id="pdf-days"></div>
+      <div style="margin-top:.75rem;padding-top:.5rem;border-top:1px solid #f3f4f6;font-size:10px;color:#9ca3af;text-align:center;">FitCoach • Données supprimées après envoi</div>
+    </div>
+  </div>
+  <button class="btn-p" onclick="envoyer()">📧 Envoyer à <span id="btn-dest"></span></button>
+  <button class="btn-s" onclick="restart()">Nouvelle session</button>
+</div>
+
+<div class="screen" id="s-ok">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
+    <div style="font-size:48px;margin-bottom:1rem;">✅</div>
+    <div class="title" style="text-align:center;">Programme envoyé !</div>
+    <div class="sub" style="text-align:center;">PDF envoyé à <strong id="ok-email"></strong>.<br>Vos données ont été supprimées.</div>
+    <button class="btn-p" onclick="restart()" style="margin-top:2rem;">Nouvelle session</button>
+  </div>
+</div>
+
+<div class="screen" id="s-admin-login">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:360px;margin:0 auto;width:100%;">
+    <div style="font-size:11px;color:#6b7280;border:1px solid #e5e7eb;border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:1rem;">Espace gérant</div>
+    <div class="title">Connexion</div>
+    <div id="lf" style="display:flex;flex-direction:column;gap:10px;margin-bottom:1rem;">
+      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="email" id="a-email" placeholder="email@masalle.com"/>
+      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="password" id="a-pwd" placeholder="Mot de passe"/>
+      <button class="btn-p" style="margin:0;" onclick="doLogin()">Se connecter</button>
+      <button class="btn-s" style="margin:0;" onclick="showReg()">Créer un compte salle</button>
+    </div>
+    <div id="rf" style="display:none;flex-direction:column;gap:10px;margin-bottom:1rem;">
+      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="text" id="r-salle" placeholder="Nom de la salle"/>
+      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="email" id="r-mail" placeholder="email@masalle.com"/>
+      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="password" id="r-pwd" placeholder="Mot de passe"/>
+      <button class="btn-p" style="margin:0;" onclick="doReg()">Créer mon compte</button>
+      <button class="btn-s" style="margin:0;" onclick="showLogin()">J'ai déjà un compte</button>
+    </div>
+    <button class="btn-back" onclick="go('s-veille')" style="justify-content:center;margin-top:.5rem;">← Retour</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+let ud={obj:null,genre:null,prio:[],niv:null,jours:null,duree:null,equips:[],zones:[]};
+let emailVal='',cguOk=false,showNums=false,generatedProgram=null,holdInterval=null;
+const STEPS=8;
+const MACHINES={
+  machines:[
+    {num:'1',name:'Leg extension'},{num:'2',name:'Leg curl'},{num:'3',name:'Prone leg curl'},
+    {num:'4',name:'Leg press'},{num:'5',name:'Hip adductor/abducteur'},{num:'6',name:'Glute'},
+    {num:'7',name:'Abdominal'},{num:'8',name:'Lat pulldown'},{num:'9',name:'Chin/Dip'},
+    {num:'10',name:'Pec fly/Rear delt'},{num:'11',name:'Seated row'},{num:'12',name:'Lateral raise'},
+    {num:'13',name:'Shoulder press'},{num:'14',name:'Chest press'},{num:'16',name:'Biceps curl'},
+    {num:'—',name:'Shoulder press 2'},{num:'—',name:'Vertical bench press'},
+    {num:'—',name:'Hack squat'},{num:'—',name:'Station poulie - Vis-à-vis'},
+    {num:'—',name:'Station poulie - Adjustable'},{num:'—',name:'Station poulie - Low row'},
+    {num:'—',name:'Station poulie - Lat pulldown'},{num:'—',name:'Glute trainer'},{num:'—',name:'Seated calf'}
+  ],
+  poids_libres:[{name:'Haltères'},{name:'Barres libres'},{name:'Cage à squat'},{name:'Banc plat'},{name:'Banc incliné'},{name:'Corde à sauter'}],
+  cardio:[{name:'Rameur'},{name:'Vélo'}]
+};
+
+function prog(){for(let i=1;i<=STEPS;i++){const el=document.getElementById('p'+i);if(!el)continue;el.innerHTML='';for(let j=1;j<=STEPS;j++){const d=document.createElement('div');d.className='prog-d'+(j<=i?' on':'');el.appendChild(d);}}}
+prog();
+
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='s-8'){fillRecap();buildKbd();}}
+
+function selS(el,key){
+  const scr=el.closest('.screen');
+  scr.querySelectorAll('.card-btn').forEach(b=>{if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+key+"'"))b.classList.remove('sel');});
+  el.classList.add('sel');ud[key]=el.dataset.val;
+  if(key==='obj'){const b=document.getElementById('b1');if(b)b.disabled=false;}
+  if(key==='niv'){const b=document.getElementById('b4');if(b)b.disabled=false;}
+  if(key==='jours'||key==='duree'){const b=document.getElementById('b5');if(b&&ud.jours&&ud.duree)b.disabled=false;}
+  if(key==='genre'){const b=document.getElementById('b2');if(b&&ud.genre&&ud.prio.length>0)b.disabled=false;}
+}
+
+function selPrio(val){
+  if(val==='tout'){ud.prio=['haut','bas'];['haut','bas','tout'].forEach(v=>document.getElementById('prio-'+v).classList.add('sel'));}
+  else{
+    document.getElementById('prio-tout').classList.remove('sel');
+    const idx=ud.prio.indexOf(val);
+    if(idx>=0){ud.prio.splice(idx,1);document.getElementById('prio-'+val).classList.remove('sel');}
+    else{ud.prio.push(val);document.getElementById('prio-'+val).classList.add('sel');}
+    if(ud.prio.includes('haut')&&ud.prio.includes('bas'))document.getElementById('prio-tout').classList.add('sel');
+  }
+  const note=document.getElementById('prio-note');
+  note.textContent=ud.prio.length===2?'Corps entier sélectionné':'Priorité : '+(ud.prio.includes('haut')?'Haut du corps':'Bas du corps');
+  note.style.display=ud.prio.length>0?'block':'none';
+  const b=document.getElementById('b2');if(b&&ud.genre&&ud.prio.length>0)b.disabled=false;
+}
+
+function togEquip(v,id){
+  const chk=document.getElementById('ce-'+id);
+  const idx=ud.equips.indexOf(v);
+  if(idx>=0){ud.equips.splice(idx,1);chk.classList.remove('on');chk.innerHTML='';}
+  else{ud.equips.push(v);chk.classList.add('on');chk.innerHTML='✓';}
+  const b=document.getElementById('b6');if(b)b.disabled=ud.equips.length===0;
+}
+
+function togZone(v){
+  const chk=document.getElementById('z-'+v);
+  if(v==='aucune'){ud.zones=['aucune'];document.querySelectorAll('[id^="z-"]').forEach(c=>{c.classList.remove('on');c.innerHTML='';});chk.classList.add('on');chk.innerHTML='✓';}
+  else{
+    const ai=ud.zones.indexOf('aucune');
+    if(ai>=0){ud.zones.splice(ai,1);document.getElementById('z-aucune').classList.remove('on');document.getElementById('z-aucune').innerHTML='';}
+    const idx=ud.zones.indexOf(v);
+    if(idx>=0){ud.zones.splice(idx,1);chk.classList.remove('on');chk.innerHTML='';}
+    else{ud.zones.push(v);chk.classList.add('on');chk.innerHTML='✓';}
+  }
+  const b=document.getElementById('b7');if(b)b.disabled=ud.zones.length===0;
+}
+
+function togCGU(){cguOk=!cguOk;document.getElementById('cgu-chk').textContent=cguOk?'☑':'☐';checkB8();}
+function checkB8(){const b=document.getElementById('b8');if(b)b.disabled=!(emailVal.includes('@')&&emailVal.indexOf('.',emailVal.indexOf('@'))>0&&cguOk);}
+
+function fillRecap(){
+  const t=document.getElementById('taille').value,p=document.getElementById('poids').value,a=document.getElementById('age').value;
+  const prioLbl=ud.prio.includes('haut')&&ud.prio.includes('bas')?'Corps entier':ud.prio.includes('haut')?'Haut du corps':'Bas du corps';
+  document.getElementById('r-obj').textContent=ud.obj||'—';
+  document.getElementById('r-genre').textContent=(ud.genre||'—')+' • '+prioLbl;
+  document.getElementById('r-morpho').textContent=(t?t+'cm ':' ')+(p?p+'kg ':' ')+(a?a+' ans':'');
+  document.getElementById('r-niv').textContent=ud.niv||'—';
+  document.getElementById('r-plan').textContent=(ud.jours||'—')+' j/sem • '+(ud.duree||'—');
+  document.getElementById('r-equip').textContent=ud.equips.join(', ')||'—';
+  emailVal='';cguOk=false;
+  document.getElementById('email-disp').innerHTML='<span class="cursor"></span>';
+  document.getElementById('cgu-chk').textContent='☐';checkB8();
+}
+
+const AZERTY=[['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','.','-','_','@']];
+const NUMS=['1','2','3','4','5','6','7','8','9','0'];
+
+function buildKbd(){showNums=false;renderKbd();}
+function renderKbd(){
+  const zone=document.getElementById('kbd-zone');zone.innerHTML='';
+  if(!showNums){
+    AZERTY.forEach(row=>{const div=document.createElement('div');div.className='kbd-row';row.forEach(k=>{const btn=document.createElement('div');btn.className='key';btn.textContent=k;btn.addEventListener('pointerdown',e=>{e.preventDefault();emailVal+=k;updDisp();});div.appendChild(btn);});zone.appendChild(div);});
+    const r4=document.createElement('div');r4.className='kbd-row';
+    const bDel=document.createElement('div');bDel.className='key wide action';bDel.textContent='⌫';bDel.addEventListener('pointerdown',e=>{e.preventDefault();emailVal=emailVal.slice(0,-1);updDisp();});
+    const bSp=document.createElement('div');bSp.className='key wider';bSp.textContent='espace';bSp.addEventListener('pointerdown',e=>{e.preventDefault();emailVal+=' ';updDisp();});
+    const bN=document.createElement('div');bN.className='key wide';bN.textContent='123';bN.addEventListener('pointerdown',e=>{e.preventDefault();showNums=true;renderKbd();});
+    r4.appendChild(bDel);r4.appendChild(bSp);r4.appendChild(bN);zone.appendChild(r4);
+    const r5=document.createElement('div');r5.className='kbd-row';
+    ['.com','.fr','@gmail.com','@hotmail.fr'].forEach(s=>{const b=document.createElement('div');b.className='key shortcut';b.textContent=s;b.addEventListener('pointerdown',e=>{e.preventDefault();emailVal+=s;updDisp();});r5.appendChild(b);});
+    zone.appendChild(r5);
+  } else {
+    const r1=document.createElement('div');r1.className='kbd-row';
+    NUMS.forEach(n=>{const b=document.createElement('div');b.className='key';b.textContent=n;b.addEventListener('pointerdown',e=>{e.preventDefault();emailVal+=n;updDisp();});r1.appendChild(b);});
+    zone.appendChild(r1);
+    const r2=document.createElement('div');r2.className='kbd-row';
+    const bABC=document.createElement('div');bABC.className='key wider';bABC.textContent='← ABC';bABC.addEventListener('pointerdown',e=>{e.preventDefault();showNums=false;renderKbd();});
+    const bDel2=document.createElement('div');bDel2.className='key wide action';bDel2.textContent='⌫';bDel2.addEventListener('pointerdown',e=>{e.preventDefault();emailVal=emailVal.slice(0,-1);updDisp();});
+    r2.appendChild(bABC);r2.appendChild(bDel2);zone.appendChild(r2);
+  }
+}
+function updDisp(){document.getElementById('email-disp').innerHTML=emailVal+'<span class="cursor"></span>';checkB8();}
+
+async function generer(){
+  ud.email=emailVal;go('s-gen');
+  const steps=['Analyse de votre profil...','Sélection des machines adaptées...','Construction du programme...','Ajout des conseils personnalisés...','Finalisation...'];
+  let si=0;
+  const iv=setInterval(()=>{si++;document.getElementById('lbar-f').style.width=Math.min(85,Math.round((si/steps.length)*85))+'%';document.getElementById('gen-txt').textContent=steps[Math.min(si,steps.length-1)];document.getElementById('gen-step').textContent='Étape '+Math.min(si+1,steps.length)+'/'+steps.length;},800);
+
+  let ml='';
+  if(ud.equips.includes('machines guidées')){ml+='\nMACHINES :\n';MACHINES.machines.forEach(m=>ml+=`- [${m.num}] ${m.name}\n`);}
+  if(ud.equips.includes('poids libres')){ml+='\nPOIDS LIBRES :\n';MACHINES.poids_libres.forEach(m=>ml+=`- ${m.name}\n`);}
+  if(ud.equips.includes('cardio')){ml+='\nCARDIO :\n';MACHINES.cardio.forEach(m=>ml+=`- ${m.name}\n`);}
+
+  const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'corps entier':ud.prio.includes('haut')?'haut du corps':'bas du corps';
+  const zonesText=ud.zones.includes('aucune')?'aucune':'éviter : '+ud.zones.join(', ');
+
+  const prompt=`Tu es un coach sportif expert. Génère un programme de musculation en JSON.\nPROFIL: objectif=${ud.obj}, genre=${ud.genre}, priorité=${prioText}, taille=${document.getElementById('taille').value}cm, poids=${document.getElementById('poids').value}kg, age=${document.getElementById('age').value}ans, niveau=${ud.niv}, fréquence=${ud.jours}j/sem, durée=${ud.duree}, zones=${zonesText}\nÉQUIPEMENTS DISPONIBLES:${ml}\nRÈGLES: utilise UNIQUEMENT les équipements listés, indique le numéro si disponible, adapte séries/reps au niveau, message motivation adapté (débutant=encourageant, intermédiaire=technique, avancé=humour+challenge).\nRÉPONDS UNIQUEMENT EN JSON: {"duree_programme":"X semaines","organisation":"description","motivation":"message","jours":[{"label":"Jour A — Push","exercices":[{"num":"14","nom":"Chest press","series":"4","reps":"8-10","repos":"90s","conseil":"tip"}]}]}`;
+
+  try{
+    const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
+    const data=await res.json();
+    clearInterval(iv);
+    document.getElementById('lbar-f').style.width='100%';
+    document.getElementById('gen-txt').textContent='Programme généré ! 🎉';
+    const text=data.content[0].text;
+    const match=text.match(/\{[\s\S]*\}/);
+    if(match){generatedProgram=JSON.parse(match[0]);setTimeout(()=>showPDF(),600);}
+    else throw new Error('Format invalide');
+  }catch(err){
+    clearInterval(iv);
+    document.getElementById('gen-txt').textContent='Erreur : '+err.message;
+    document.getElementById('lbar-f').style.background='#ef4444';
+  }
+}
+
+function showPDF(){
+  go('s-pdf');
+  document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('btn-dest').textContent=ud.email;
+  document.getElementById('pdf-motiv').textContent='"'+generatedProgram.motivation+'"';
+  let html=`<div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:.75rem;">${generatedProgram.duree_programme} • ${ud.jours} j/sem • ${ud.duree} • ${generatedProgram.organisation}</div>`;
+  generatedProgram.jours.forEach(j=>{
+    html+=`<div class="day-block"><div class="day-badge">${j.label}</div>`;
+    j.exercices.forEach(ex=>{
+      html+=`<div class="ex-row"><div class="ex-num">${ex.num||'•'}</div><span class="ex-name">${ex.nom}</span><span class="ex-sets">${ex.series}×${ex.reps} • ${ex.repos}</span></div>`;
+      if(ex.conseil)html+=`<div style="font-size:11px;color:#6b7280;padding:2px 0 4px 30px;font-style:italic;">💡 ${ex.conseil}</div>`;
+    });
+    html+='</div>';
+  });
+  document.getElementById('pdf-days').innerHTML=html;
+}
+
+function envoyer(){document.getElementById('ok-email').textContent=ud.email;go('s-ok');}
+
+function restart(){
+  ud={obj:null,genre:null,prio:[],niv:null,jours:null,duree:null,equips:[],zones:[]};
+  emailVal='';cguOk=false;showNums=false;generatedProgram=null;
+  document.querySelectorAll('.card-btn').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('.chk').forEach(c=>{c.classList.remove('on');c.innerHTML='';});
+  ['b1','b2','b4','b5','b6','b7','b8'].forEach(id=>{const b=document.getElementById(id);if(b)b.disabled=true;});
+  document.getElementById('lbar-f').style.width='0%';
+  document.getElementById('lbar-f').style.background='#1a1a1a';
+  go('s-veille');
+}
+
+function startHold(){let p=0;const start=Date.now();holdInterval=setInterval(()=>{p=Math.min(100,((Date.now()-start)/2000)*100);document.getElementById('hold-fill').style.width=p+'%';if(p>=100){cancelHold();go('s-admin-login');}},30);}
+function cancelHold(){clearInterval(holdInterval);holdInterval=null;document.getElementById('hold-fill').style.width='0%';}
+function doLogin(){const e=document.getElementById('a-email').value;if(!e)return;go('s-veille');}
+function doReg(){const n=document.getElementById('r-salle').value.trim(),e=document.getElementById('r-mail').value.trim();if(!n||!e)return;go('s-veille');}
+function showReg(){document.getElementById('lf').style.display='none';document.getElementById('rf').style.display='flex';}
+function showLogin(){document.getElementById('rf').style.display='none';document.getElementById('lf').style.display='flex';}
+</script>
+</body>
+</html>
