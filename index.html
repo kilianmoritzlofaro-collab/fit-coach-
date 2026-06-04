@@ -421,8 +421,11 @@ async function generer(){
   const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'corps entier':ud.prio.includes('haut')?'haut du corps':'bas du corps';
   const zonesText=ud.zones.includes('aucune')?'aucune':'éviter : '+ud.zones.join(', ');
 
-  const prompt=`Tu es un coach sportif expert. Génère un programme de musculation en JSON.\nPROFIL: objectif=${ud.obj}, genre=${ud.genre}, priorité=${prioText}, taille=${document.getElementById('taille').value}cm, poids=${document.getElementById('poids').value}kg, age=${document.getElementById('age').value}ans, niveau=${ud.niv}, fréquence=${ud.jours}j/sem, durée=${ud.duree}, zones=${zonesText}\nÉQUIPEMENTS DISPONIBLES:${ml}\nRÈGLES: utilise UNIQUEMENT les équipements listés, indique le numéro si disponible, adapte séries/reps au niveau, message motivation adapté (débutant=encourageant, intermédiaire=technique, avancé=humour+challenge).\nIMPORTANT: Reponds UNIQUEMENT avec du JSON valide, sans apostrophes. Format: {"duree_programme":"X semaines","organisation":"desc","motivation":"message","jours":[{"label":"Jour A","exercices":[{"num":"1","nom":"Exercice","series":"3","reps":"10","repos":"90s","conseil":"conseil"}]}]}`;
-
+const prompt=`You are a fitness coach. Generate a workout program in valid JSON only. No apostrophes in values. Use simple words.
+PROFILE: goal=${ud.obj}, gender=${ud.genre}, priority=${prioText}, height=${document.getElementById('taille').value}cm, weight=${document.getElementById('poids').value}kg, age=${document.getElementById('age').value}, level=${ud.niv}, frequency=${ud.jours}days/week, duration=${ud.duree}, avoid=${zonesText}
+EQUIPMENT:${ml}
+RULES: Use ONLY listed equipment. Include machine number if available. Adapt sets/reps to level.
+RESPOND ONLY WITH VALID JSON, no apostrophes: {"duree_programme":"X weeks","organisation":"desc","motivation":"message","jours":[{"label":"Day A","exercices":[{"num":"1","nom":"Exercise","series":"3","reps":"10","repos":"90s","conseil":"tip"}]}]}`;
   try{
     const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
     const data=await res.json();
