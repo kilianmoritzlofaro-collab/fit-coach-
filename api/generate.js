@@ -20,28 +20,28 @@ module.exports = async function handler(req, res) {
     });
 
     const data = await response.json();
+    const text = data?.content?.[0]?.text || '';
     
-    if (data.content && data.content[0] && data.content[0].text) {
-      const text = data.content[0].text;
-      const match = text.match(/\{[\s\S]*\}/);
-      if (match) {
+    const match = text.match(/\{[\s\S]*\}/);
+    if (match) {
+      try {
+        const programme = JSON.parse(match[0]);
+        return res.status(200).json({ ok: true, programme });
+      } catch(e) {
+        // Nettoyer les apostrophes et réessayer
+        const cleaned = match[0]
+          .replace(/(["\w\s])'(["\w\s])/g, '$1\u2019$2')
+          .replace(/\n/g, ' ')
+          .replace(/\t/g, ' ');
         try {
-          const parsed = JSON.parse(match[0]);
-          return res.status(200).json({ ok: true, programme: parsed });
-        } catch(e) {
-          const fixed = match[0]
-            .replace(/([^\\])'/g, "$1\\'")
-            .replace(/\n/g, ' ');
-          try {
-            const parsed2 = JSON.parse(fixed);
-            return res.status(200).json({ ok: true, programme: parsed2 });
-          } catch(e2) {
-            return res.status(200).json({ ok: false, raw: text });
-          }
+          const programme = JSON.parse(cleaned);
+          return res.status(200).json({ ok: true, programme });
+        } catch(e2) {
+          return res.status(200).json({ ok: false, raw: text, error: e2.message });
         }
       }
     }
-    return res.status(200).json({ ok: false, raw: JSON.stringify(data) });
+    return res.status(200).json({ ok: false, raw: text });
 
   } catch (err) {
     return res.status(500).json({ error: err.message });
