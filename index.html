@@ -429,7 +429,24 @@ async function generer(){
     clearInterval(iv);
     document.getElementById('lbar-f').style.width='100%';
     document.getElementById('gen-txt').textContent='Programme généré ! 🎉';
-if(data.ok && data.programme){generatedProgram=data.programme;setTimeout(()=>{go('s-pdf');showPDF();},500);return;
+if(data.ok && data.programme){
+  generatedProgram=data.programme;
+  console.log('programme ok',generatedProgram);
+  go('s-pdf');
+  document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('btn-dest').textContent=ud.email;
+  document.getElementById('pdf-motiv').textContent='"'+(generatedProgram.motivation||'Bonne séance!')+'"';
+  let html='';
+  (generatedProgram.jours||[]).forEach(j=>{
+    html+=`<div class="day-block"><div class="day-badge">${j.label||''}</div>`;
+    (j.exercices||[]).forEach(ex=>{
+      html+=`<div class="ex-row"><div class="ex-num">${ex.num||'•'}</div><span class="ex-name">${ex.nom||''}</span><span class="ex-sets">${ex.series||''}×${ex.reps||''} • ${ex.repos||''}</span></div>`;
+    });
+    html+='</div>';
+  });
+  document.getElementById('pdf-days').innerHTML=html;
+  return;
+}
 const text = data.raw || JSON.stringify(data);
   }catch(err){
     clearInterval(iv);
