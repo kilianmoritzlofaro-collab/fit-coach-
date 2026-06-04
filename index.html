@@ -431,10 +431,6 @@ async function generer(){
     document.getElementById('gen-txt').textContent='Programme généré ! 🎉';
 if(data.ok && data.programme){generatedProgram=data.programme;setTimeout(()=>showPDF(),600);return;}
 const text = data.raw || JSON.stringify(data);
-    const const clean=text.replace(/[\u0000-\u001F\u007F-\u009F]/g,'');
-const match=clean.match(/\{[\s\S]*\}/);
-    if(match){generatedProgram=JSON.parse(match[0]);setTimeout(()=>showPDF(),600);}
-    else throw new Error('Format invalide');
   }catch(err){
     clearInterval(iv);
     document.getElementById('gen-txt').textContent='Erreur : '+err.message+' | '+JSON.stringify(err);
