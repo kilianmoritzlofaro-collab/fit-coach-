@@ -22,20 +22,23 @@ module.exports = async function handler(req, res) {
     const data = await response.json();
     const text = data?.content?.[0]?.text || '';
     
-    const match = text.match(/\{[\s\S]*\}/);
-    if (match) {
-      try {
-        const programme = JSON.parse(match[0]);
-        return res.status(200).json({ ok: true, programme });
-      } catch(e) {
-        // Nettoyer les apostrophes et réessayer
-        const cleaned = match[0]
-          .replace(/(["\w\s])'(["\w\s])/g, '$1\u2019$2')
-          .replace(/\n/g, ' ')
-          .replace(/\t/g, ' ');
-        try {
-          const programme = JSON.parse(cleaned);
-          return res.status(200).json({ ok: true, programme });
+    const text = data?.content?.[0]?.text || '';
+
+const match = text.match(/\{[\s\S]*\}/);
+if (match) {
+  let jsonStr = match[0];
+  // Remplacer les apostrophes françaises dans les valeurs string
+  jsonStr = jsonStr.replace(/"([^"]*)"/g, (m, p1) => {
+    return '"' + p1.replace(/'/g, '\u2019') + '"';
+  });
+  try {
+    const programme = JSON.parse(jsonStr);
+    return res.status(200).json({ ok: true, programme });
+  } catch(e) {
+    return res.status(200).json({ ok: false, raw: text, error: e.message });
+  }
+}
+return res.status(200).json({ ok: false, raw: text });
         } catch(e2) {
           return res.status(200).json({ ok: false, raw: text, error: e2.message });
         }
