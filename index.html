@@ -429,7 +429,7 @@ async function generer(){
     clearInterval(iv);
     document.getElementById('lbar-f').style.width='100%';
     document.getElementById('gen-txt').textContent='Programme généré ! 🎉';
-if(data.ok && data.programme){generatedProgram=data.programme;showPDF();return;
+if(data.ok && data.programme){generatedProgram=data.programme;setTimeout(()=>showPDF(),100);return;
 const text = data.raw || JSON.stringify(data);
   }catch(err){
     clearInterval(iv);
