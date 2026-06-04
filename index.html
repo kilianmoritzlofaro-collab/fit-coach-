@@ -424,7 +424,7 @@ async function generer(){
   const prompt=`Tu es un coach sportif expert. Génère un programme de musculation en JSON.\nPROFIL: objectif=${ud.obj}, genre=${ud.genre}, priorité=${prioText}, taille=${document.getElementById('taille').value}cm, poids=${document.getElementById('poids').value}kg, age=${document.getElementById('age').value}ans, niveau=${ud.niv}, fréquence=${ud.jours}j/sem, durée=${ud.duree}, zones=${zonesText}\nÉQUIPEMENTS DISPONIBLES:${ml}\nRÈGLES: utilise UNIQUEMENT les équipements listés, indique le numéro si disponible, adapte séries/reps au niveau, message motivation adapté (débutant=encourageant, intermédiaire=technique, avancé=humour+challenge).\nRÉPONDS UNIQUEMENT EN JSON: {"duree_programme":"X semaines","organisation":"description","motivation":"message","jours":[{"label":"Jour A — Push","exercices":[{"num":"14","nom":"Chest press","series":"4","reps":"8-10","repos":"90s","conseil":"tip"}]}]}`;
 
   try{
-    const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
     const data=await res.json();
     clearInterval(iv);
     document.getElementById('lbar-f').style.width='100%';
