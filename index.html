@@ -439,22 +439,28 @@ const text = data.raw || JSON.stringify(data);
 }
 
 function showPDF(){
-  go('s-pdf');
-  document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
-  document.getElementById('btn-dest').textContent=ud.email;
-  document.getElementById('pdf-motiv').textContent='"'+generatedProgram.motivation+'"';
-  let html=`<div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:.75rem;">${generatedProgram.duree_programme} • ${ud.jours} j/sem • ${ud.duree} • ${generatedProgram.organisation}</div>`;
-  generatedProgram.jours.forEach(j=>{
-    html+=`<div class="day-block"><div class="day-badge">${j.label}</div>`;
-    j.exercices.forEach(ex=>{
-      html+=`<div class="ex-row"><div class="ex-num">${ex.num||'•'}</div><span class="ex-name">${ex.nom}</span><span class="ex-sets">${ex.series}×${ex.reps} • ${ex.repos}</span></div>`;
-      if(ex.conseil)html+=`<div style="font-size:11px;color:#6b7280;padding:2px 0 4px 30px;font-style:italic;">💡 ${ex.conseil}</div>`;
+  try{
+    go('s-pdf');
+    document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+    document.getElementById('btn-dest').textContent=ud.email;
+    document.getElementById('pdf-motiv').textContent='"'+(generatedProgram.motivation||'Bonne séance !')+'"';
+    let html=`<div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:.75rem;">${generatedProgram.duree_programme||''} • ${ud.jours} j/sem • ${ud.duree} • ${generatedProgram.organisation||''}</div>`;
+    const jours=generatedProgram.jours||[];
+    jours.forEach(j=>{
+      html+=`<div class="day-block"><div class="day-badge">${j.label||''}</div>`;
+      const exos=j.exercices||[];
+      exos.forEach(ex=>{
+        html+=`<div class="ex-row"><div class="ex-num">${ex.num||'•'}</div><span class="ex-name">${ex.nom||''}</span><span class="ex-sets">${ex.series||''}×${ex.reps||''} • ${ex.repos||''}</span></div>`;
+        if(ex.conseil)html+=`<div style="font-size:11px;color:#6b7280;padding:2px 0 4px 30px;font-style:italic;">💡 ${ex.conseil}</div>`;
+      });
+      html+='</div>';
     });
-    html+='</div>';
-  });
-  document.getElementById('pdf-days').innerHTML=html;
+    document.getElementById('pdf-days').innerHTML=html;
+  }catch(e){
+    document.getElementById('gen-txt').textContent='Erreur showPDF: '+e.message;
+    go('s-gen');
+  }
 }
-
 function envoyer(){document.getElementById('ok-email').textContent=ud.email;go('s-ok');}
 
 function restart(){
