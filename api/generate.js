@@ -21,25 +21,17 @@ module.exports = async function handler(req, res) {
 
     const data = await response.json();
     const text = data?.content?.[0]?.text || '';
-    const match = text.match(/\{[\s\S]*\}/);
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
     
-    if (match) {
+    if (start !== -1 && end !== -1) {
+      let jsonStr = text.substring(start, end + 1);
+      jsonStr = jsonStr.replace(/'/g, ' ');
       try {
-        const programme = JSON.parse(match[0]);
+        const programme = JSON.parse(jsonStr);
         return res.status(200).json({ ok: true, programme });
       } catch(e) {
-        // Nettoyer et réessayer
-        const clean = match[0]
-          .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '')
-          .replace(/"([^"\\]*(\\.[^"\\]*)*)"|(')/g, (m, g1, g2, apos) => {
-            return apos ? '\u2019' : m;
-          });
-        try {
-          const programme = JSON.parse(clean);
-          return res.status(200).json({ ok: true, programme });
-        } catch(e2) {
-          return res.status(200).json({ ok: false, raw: text, parseError: e2.message });
-        }
+        return res.status(200).json({ ok: false, raw: text, error: e.message });
       }
     }
     return res.status(200).json({ ok: false, raw: text });
