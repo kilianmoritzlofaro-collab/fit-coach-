@@ -27,15 +27,15 @@ module.exports = async function handler(req, res) {
 const match = text.match(/\{[\s\S]*\}/);
 if (match) {
   let jsonStr = match[0];
-  // Remplacer les apostrophes françaises dans les valeurs string
-  jsonStr = jsonStr.replace(/"([^"]*)"/g, (m, p1) => {
-    return '"' + p1.replace(/'/g, '\u2019') + '"';
-  });
+  jsonStr = jsonStr.replace(/'/g, ' ');
   try {
     const programme = JSON.parse(jsonStr);
     return res.status(200).json({ ok: true, programme });
   } catch(e) {
     return res.status(200).json({ ok: false, raw: text, error: e.message });
+  }
+}
+return res.status(200).json({ ok: false, raw: text });
   }
 }
 return res.status(200).json({ ok: false, raw: text });
