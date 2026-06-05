@@ -21,27 +21,15 @@ module.exports = async function handler(req, res) {
 
     const data = await response.json();
     const text = data?.content?.[0]?.text || '';
+    const match = text.match(/\{[\s\S]*\}/);
     
-    const text = data?.content?.[0]?.text || '';
-
-const match = text.match(/\{[\s\S]*\}/);
-if (match) {
-  let jsonStr = match[0];
-  jsonStr = jsonStr.replace(/'/g, ' ');
-  try {
-    const programme = JSON.parse(jsonStr);
-    return res.status(200).json({ ok: true, programme });
-  } catch(e) {
-    return res.status(200).json({ ok: false, raw: text, error: e.message });
-  }
-}
-return res.status(200).json({ ok: false, raw: text });
-  }
-}
-return res.status(200).json({ ok: false, raw: text });
-        } catch(e2) {
-          return res.status(200).json({ ok: false, raw: text, error: e2.message });
-        }
+    if (match) {
+      let jsonStr = match[0].replace(/'/g, ' ');
+      try {
+        const programme = JSON.parse(jsonStr);
+        return res.status(200).json({ ok: true, programme });
+      } catch(e) {
+        return res.status(200).json({ ok: false, raw: text, error: e.message });
       }
     }
     return res.status(200).json({ ok: false, raw: text });
