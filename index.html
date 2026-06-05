@@ -224,7 +224,7 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
   </div>
   <div class="email-disp" id="email-disp"><span class="cursor"></span></div>
   <div id="kbd-zone"></div>
-  <div class="note" style="margin-top:8px;">Donnees supprimees apres envoi. <span style="cursor:pointer;color:#111;" onclick="togCGU()"><span id="cgu-chk">non</span> J accepte</span></div>
+  <div class="note" style="margin-top:8px;">🔒 Donnees supprimees apres envoi. <span style="cursor:pointer;color:#111;" onclick="togCGU()"><span id="cgu-chk">☐</span> J accepte les CGU</span></div>
   <button class="btn-p" id="b8" disabled onclick="generer()" style="margin-top:8px;">Generer mon programme avec IA</button>
 </div>
 
@@ -239,8 +239,8 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
 </div>
 
 <div class="screen" id="s-pdf">
-  <div class="title" style="margin-bottom:.25rem;">Votre programme OK</div>
-  <div class="sub" style="margin-bottom:.75rem;">Genere par IA - Pret a envoyer</div>
+  <div class="title" style="margin-bottom:.25rem;">Votre programme ✅</div>
+  <div class="sub" style="margin-bottom:.75rem;">Genere par IA · Pret a envoyer</div>
   <div class="pdf-wrap">
     <div class="wm">FitCoach</div>
     <div style="position:relative;z-index:1;">
@@ -362,7 +362,7 @@ function togZone(v){
   var b=document.getElementById('b7');if(b)b.disabled=ud.zones.length===0;
 }
 
-function togCGU(){cguOk=!cguOk;document.getElementById('cgu-chk').textContent=cguOk?'oui':'non';checkB8();}
+function togCGU(){cguOk=!cguOk;document.getElementById('cgu-chk').textContent=cguOk?'☑':'☐';checkB8();}
 function checkB8(){var b=document.getElementById('b8');if(b)b.disabled=!(emailVal.indexOf('@')>=0&&emailVal.indexOf('.',emailVal.indexOf('@'))>0&&cguOk);}
 
 function fillRecap(){
@@ -376,7 +376,7 @@ function fillRecap(){
   document.getElementById('r-equip').textContent=ud.equips.join(', ')||'-';
   emailVal='';cguOk=false;
   document.getElementById('email-disp').innerHTML='<span class="cursor"></span>';
-  document.getElementById('cgu-chk').textContent='non';checkB8();
+  document.getElementById('cgu-chk').textContent='☐';checkB8();
 }
 
 var AZERTY=[['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','.','-','_','@']];
@@ -451,8 +451,8 @@ async function generer(){
         (generatedProgram.jours||[]).forEach(function(j){
           html+='<div class="day-block"><div class="day-badge">'+(j.label||'')+'</div>';
           (j.exercices||[]).forEach(function(ex){
-            html+='<div class="ex-row"><div class="ex-num">'+(ex.num||'x')+'</div><span class="ex-name">'+(ex.nom||'')+'</span><span class="ex-sets">'+(ex.series||'')+'x'+(ex.reps||'')+' - '+(ex.repos||'')+'</span></div>';
-            if(ex.conseil)html+='<div style="font-size:11px;color:#6b7280;padding:2px 0 4px 30px;">'+ex.conseil+'</div>';
+            html+='<div class="ex-row"><div class="ex-num">'+(ex.num||'x')+'</div><span class="ex-name">'+(ex.nom||'')+'</span><span class="ex-sets">'+(ex.series||'')+'x'+(ex.reps||'')+' · '+(ex.repos||'')+'</span></div>';
+            if(ex.conseil)html+='<div style="font-size:11px;color:#6b7280;padding:3px 0 5px 32px;font-style:italic;">💡 '+ex.conseil+'</div>';
           });
           html+='</div>';
         });
