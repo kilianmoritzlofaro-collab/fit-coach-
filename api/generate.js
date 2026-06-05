@@ -28,10 +28,10 @@ module.exports = async function handler(req, res) {
         const programme = JSON.parse(jsonStr);
         return res.status(200).json({ ok: true, programme });
       } catch(e) {
-        return res.status(200).json({ ok: false, raw: text, error: e.message, jsonStr: jsonStr.substring(0, 500) });
+        return res.status(200).json({ ok: false, raw: text, error: e.message, jsonStr: jsonStr.substring(0, 800) });
       }
     }
-return res.status(200).json({ ok: false, raw: text, cleanStart: cleanText.indexOf('{'), cleanLen: cleanText.length, clean50: cleanText.substring(0,50) });
+    return res.status(200).json({ ok: false, raw: text, debug: 'no braces found', cleanLen: cleanText.length, cleanStart: cleanText.indexOf('{') });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
