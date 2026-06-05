@@ -427,11 +427,10 @@ async function generer(){
   const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'full body':ud.prio.includes('haut')?'upper body':'lower body';
   const zonesText=ud.zones.includes('none')?'none':ud.zones.join(' ');
 
-const prompt='IMPORTANT: You MUST respond in French language only. Genere un programme fitness JSON uniquement, pas apostrophes. Profil: objectif='+ud.obj+' genre='+ud.genre+' niveau='+ud.niv+' frequence='+ud.jours+'j/semaine duree='+ud.duree+' eviter='+zonesText+' equipements='+ml+' Reponds UNIQUEMENT avec JSON valide: {"duree_programme":"4 semaines","organisation":"Full body","motivation":"Bravo","jours":[{"label":"Jour A","exercices":[{"num":"1","nom":"Leg press","series":"3","reps":"10","repos":"90s","conseil":"Bon travail"}]}]}';  try{
-    const res=await fetch('/api/generate',{
+'REPONDRE EN FRANCAIS. JSON UNIQUEMENT. ZERO APOSTROPHE DANS LES VALEURS.    const res=await fetch('/api/generate',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2000,messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:4096,messages:[{role:'user',content:prompt}]})
     });
     const data=await res.json();
     clearInterval(iv);
