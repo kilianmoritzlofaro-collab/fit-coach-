@@ -26,8 +26,7 @@ module.exports = async function handler(req, res) {
     
     if (start !== -1 && end !== -1) {
       let jsonStr = text.substring(start, end + 1);
-      jsonStr = jsonStr.replace(/'/g, ' ');
-      try {
+jsonStr = jsonStr.replace(/'/g, ' ').replace(/[\u2018\u2019]/g, ' ').replace(/[\u201C\u201D]/g, '"');      try {
         const programme = JSON.parse(jsonStr);
         return res.status(200).json({ ok: true, programme });
       } catch(e) {
