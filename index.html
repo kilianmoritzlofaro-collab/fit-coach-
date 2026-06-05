@@ -421,14 +421,7 @@ async function generer(){
   const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'corps entier':ud.prio.includes('haut')?'haut du corps':'bas du corps';
   const zonesText=ud.zones.includes('aucune')?'aucune':'éviter : '+ud.zones.join(', ');
 
-const prompt=`Generate a fitness program in JSON only. No apostrophes allowed in any value.
-Profile: goal=${ud.obj}, gender=${ud.genre}, priority=${prioText}, height=${document.getElementById('taille').value}cm, weight=${document.getElementById('poids').value}kg, age=${document.getElementById('age').value}ans, level=${ud.niv}, frequency=${ud.jours}days/week, duration=${ud.duree}, avoid=${zonesText}
-Equipment:${ml}
-Rules: Use ONLY listed equipment. Include machine number. Adapt to level. NO APOSTROPHES in JSON values.
-Output ONLY this JSON format: {"duree_programme":"X semaines","organisation":"desc","motivation":"message without apostrophe","jours":[{"label":"Jour A","exercices":[{"num":"14","nom":"Chest press","series":"4","reps":"8-10","repos":"90s","conseil":"tip without apostrophe"}]}]}`;PROFILE: goal=${ud.obj}, gender=${ud.genre}, priority=${prioText}, height=${document.getElementById('taille').value}cm, weight=${document.getElementById('poids').value}kg, age=${document.getElementById('age').value}, level=${ud.niv}, frequency=${ud.jours}days/week, duration=${ud.duree}, avoid=${zonesText}
-EQUIPMENT:${ml}
-RULES: Use ONLY listed equipment. Include machine number if available. Adapt sets/reps to level.
-RESPOND ONLY WITH VALID JSON, no apostrophes: {"duree_programme":"X weeks","organisation":"desc","motivation":"message","jours":[{"label":"Day A","exercices":[{"num":"1","nom":"Exercise","series":"3","reps":"10","repos":"90s","conseil":"tip"}]}]}`;
+const prompt=`Generate a fitness program in JSON only. No apostrophes in values. Equipment:${ml} Profile: goal=${ud.obj}, gender=${ud.genre}, priority=${prioText}, height=${document.getElementById('taille').value}cm, weight=${document.getElementById('poids').value}kg, age=${document.getElementById('age').value}, level=${ud.niv}, frequency=${ud.jours}days/week, duration=${ud.duree}, avoid=${zonesText}. Output ONLY valid JSON: {"duree_programme":"X semaines","organisation":"desc","motivation":"message","jours":[{"label":"Jour A","exercices":[{"num":"1","nom":"Exercise","series":"3","reps":"10","repos":"90s","conseil":"tip"}]}]}`;
   try{
     const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
     const data=await res.json();
