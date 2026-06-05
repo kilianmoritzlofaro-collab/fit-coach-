@@ -427,8 +427,7 @@ async function generer(){
   const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'full body':ud.prio.includes('haut')?'upper body':'lower body';
   const zonesText=ud.zones.includes('none')?'none':ud.zones.join(' ');
 
-  const prompt='Generate a '+ud.jours+' day per week fitness program for goal:'+ud.obj+' gender:'+ud.genre+' priority:'+prioText+' height:'+document.getElementById('taille').value+'cm weight:'+document.getElementById('poids').value+'kg age:'+document.getElementById('age').value+' level:'+ud.niv+' duration:'+ud.duree+' avoid:'+zonesText+' equipment:'+ml+' CRITICAL: respond with ONLY a JSON object, no explanation, no markdown. Use this exact format: {"duree_programme":"4 weeks","organisation":"Full body","motivation":"Great work","jours":[{"label":"Day A","exercices":[{"num":"1","nom":"Leg extension","series":"3","reps":"12","repos":"60s","conseil":"Good form"}]}]}';
-
+const prompt='Genere un programme de fitness en JSON uniquement. Langue: francais. Pas d apostrophes dans les valeurs. Equipment:'+ml+' Profil: objectif='+ud.obj+', genre='+ud.genre+', priorite='+prioText+', taille='+document.getElementById('taille').value+'cm, poids='+document.getElementById('poids').value+'kg, age='+document.getElementById('age').value+', niveau='+ud.niv+', frequence='+ud.jours+'j/semaine, duree='+ud.duree+', eviter='+zonesText+'. Reponds UNIQUEMENT avec ce JSON valide sans apostrophes: {"duree_programme":"X semaines","organisation":"desc","motivation":"message","jours":[{"label":"Jour A","exercices":[{"num":"1","nom":"Exercice","series":"3","reps":"10","repos":"90s","conseil":"conseil"}]}]}';
   try{
     const res=await fetch('/api/generate',{
       method:'POST',
