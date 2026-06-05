@@ -26,7 +26,17 @@ module.exports = async function handler(req, res) {
       jsonStr = jsonStr.split("'").join(" ").split("\u2018").join(" ").split("\u2019").join(" ").split("\u201C").join('"').split("\u201D").join('"');
       try {
         const programme = JSON.parse(jsonStr);
-        return res.status(200).json({ ok: true, programme });
+if(programme.motivation && programme.motivation.match(/[a-z]/i) && !programme.motivation.match(/[àâéèêëîïôùûüç]/i)){
+  programme.motivation = 'Excellent travail, continuez comme ca!';
+}
+(programme.jours||[]).forEach(j=>{
+  (j.exercices||[]).forEach(ex=>{
+    if(ex.conseil && !ex.conseil.match(/[àâéèêëîïôùûüç]/i)){
+      ex.conseil = '';
+    }
+  });
+});
+return res.status(200).json({ ok: true, programme });
       } catch(e) {
         return res.status(200).json({ ok: false, raw: text, error: e.message, jsonStr: jsonStr.substring(0, 800) });
       }
