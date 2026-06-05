@@ -26,22 +26,22 @@ module.exports = async function handler(req, res) {
       jsonStr = jsonStr.split("'").join(" ").split("\u2018").join(" ").split("\u2019").join(" ").split("\u201C").join('"').split("\u201D").join('"');
       try {
         const programme = JSON.parse(jsonStr);
-if(programme.motivation && programme.motivation.match(/[a-z]/i) && !programme.motivation.match(/[àâéèêëîïôùûüç]/i)){
-  programme.motivation = 'Excellent travail, continuez comme ca!';
-}
-(programme.jours||[]).forEach(j=>{
-  (j.exercices||[]).forEach(ex=>{
-    if(ex.conseil && !ex.conseil.match(/[àâéèêëîïôùûüç]/i)){
-      ex.conseil = '';
-    }
-  });
-});
-return res.status(200).json({ ok: true, programme });
+        (programme.jours||[]).forEach(function(j){
+          (j.exercices||[]).forEach(function(ex){
+            if(!ex.conseil||ex.conseil.length<3){
+              ex.conseil='Bonne execution et amplitude complete';
+            }
+          });
+        });
+        if(!programme.motivation||programme.motivation.length<3){
+          programme.motivation='Excellent travail, continuez comme ca !';
+        }
+        return res.status(200).json({ ok: true, programme });
       } catch(e) {
         return res.status(200).json({ ok: false, raw: text, error: e.message, jsonStr: jsonStr.substring(0, 800) });
       }
     }
-    return res.status(200).json({ ok: false, raw: text, debug: 'no braces found', cleanLen: cleanText.length, cleanStart: cleanText.indexOf('{') });
+    return res.status(200).json({ ok: false, raw: text });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
