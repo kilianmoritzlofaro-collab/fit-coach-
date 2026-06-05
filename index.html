@@ -105,10 +105,10 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
   <div class="title">Quel est votre objectif ?</div>
   <div class="sub">Choisissez ce qui vous correspond le mieux.</div>
   <div class="grid2">
-    <div class="card-btn" onclick="selS(this,'obj')" data-val="prise de muscle"><span class="ic">💪</span>Prise de muscle</div>
-    <div class="card-btn" onclick="selS(this,'obj')" data-val="perte de poids"><span class="ic">🔥</span>Perte de poids</div>
-    <div class="card-btn" onclick="selS(this,'obj')" data-val="cardio et endurance"><span class="ic">❤️</span>Cardio</div>
-    <div class="card-btn" onclick="selS(this,'obj')" data-val="forme générale"><span class="ic">⭐</span>Forme générale</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="muscle gain"><span class="ic">💪</span>Prise de muscle</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="weight loss"><span class="ic">🔥</span>Perte de poids</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="cardio endurance"><span class="ic">❤️</span>Cardio</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="general fitness"><span class="ic">⭐</span>Forme générale</div>
   </div>
   <button class="btn-p" id="b1" disabled onclick="go('s-2')">Continuer</button>
 </div>
@@ -119,9 +119,9 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
   <div class="title">Votre profil</div>
   <div class="sec-label">Genre</div>
   <div class="grid3" style="margin-bottom:1.25rem;">
-    <div class="card-btn" onclick="selS(this,'genre')" data-val="homme"><span class="ic">👨</span>Homme</div>
-    <div class="card-btn" onclick="selS(this,'genre')" data-val="femme"><span class="ic">👩</span>Femme</div>
-    <div class="card-btn" onclick="selS(this,'genre')" data-val="autre"><span class="ic">🧑</span>Autre</div>
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="male"><span class="ic">👨</span>Homme</div>
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="female"><span class="ic">👩</span>Femme</div>
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="other"><span class="ic">🧑</span>Autre</div>
   </div>
   <div class="sec-label">Priorité corps</div>
   <div class="grid3" style="margin-bottom:.75rem;">
@@ -150,9 +150,9 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
   <div class="title">Votre niveau</div>
   <div class="sub">Soyez honnête pour un programme vraiment adapté.</div>
   <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1.25rem;">
-    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="débutant"><strong>Débutant</strong><br><span style="font-size:11px;color:#6b7280;">Moins de 6 mois de pratique</span></div>
-    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="intermédiaire"><strong>Intermédiaire</strong><br><span style="font-size:11px;color:#6b7280;">6 mois à 2 ans de pratique</span></div>
-    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="avancé"><strong>Avancé</strong><br><span style="font-size:11px;color:#6b7280;">Plus de 2 ans de pratique régulière</span></div>
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="beginner"><strong>Débutant</strong><br><span style="font-size:11px;color:#6b7280;">Moins de 6 mois de pratique</span></div>
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="intermediate"><strong>Intermédiaire</strong><br><span style="font-size:11px;color:#6b7280;">6 mois à 2 ans de pratique</span></div>
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="advanced"><strong>Avancé</strong><br><span style="font-size:11px;color:#6b7280;">Plus de 2 ans de pratique régulière</span></div>
   </div>
   <button class="btn-p" id="b4" disabled onclick="go('s-5')">Continuer</button>
 </div>
@@ -173,10 +173,10 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
   </div>
   <div class="sec-label">Durée par séance</div>
   <div class="grid2" style="margin-bottom:1.25rem;">
-    <div class="card-btn" onclick="selS(this,'duree')" data-val="30 minutes">30 min</div>
-    <div class="card-btn" onclick="selS(this,'duree')" data-val="45 minutes">45 min</div>
-    <div class="card-btn" onclick="selS(this,'duree')" data-val="1 heure">1 heure</div>
-    <div class="card-btn" onclick="selS(this,'duree')" data-val="1h30">1h30</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="30min">30 min</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="45min">45 min</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="1hour">1 heure</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="90min">1h30</div>
   </div>
   <button class="btn-p" id="b5" disabled onclick="go('s-6')">Continuer</button>
 </div>
@@ -187,8 +187,8 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
   <div class="title">Équipements souhaités</div>
   <div class="sub">Sélectionnez tout ce que vous voulez utiliser.</div>
   <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:1.25rem;">
-    <div class="check-row" onclick="togEquip('machines guidées','m')"><div class="chk" id="ce-m"></div><div><div style="font-weight:500;">Machines guidées</div><div style="font-size:12px;color:#6b7280;">Leg press, poulie, chest press...</div></div></div>
-    <div class="check-row" onclick="togEquip('poids libres','l')"><div class="chk" id="ce-l"></div><div><div style="font-weight:500;">Poids libres</div><div style="font-size:12px;color:#6b7280;">Haltères, barres, cage à squat...</div></div></div>
+    <div class="check-row" onclick="togEquip('machines','m')"><div class="chk" id="ce-m"></div><div><div style="font-weight:500;">Machines guidées</div><div style="font-size:12px;color:#6b7280;">Leg press, poulie, chest press...</div></div></div>
+    <div class="check-row" onclick="togEquip('freeweights','l')"><div class="chk" id="ce-l"></div><div><div style="font-weight:500;">Poids libres</div><div style="font-size:12px;color:#6b7280;">Haltères, barres, cage à squat...</div></div></div>
     <div class="check-row" onclick="togEquip('cardio','c')"><div class="chk" id="ce-c"></div><div><div style="font-weight:500;">Cardio</div><div style="font-size:12px;color:#6b7280;">Rameur, vélo...</div></div></div>
   </div>
   <button class="btn-p" id="b6" disabled onclick="go('s-7')">Continuer</button>
@@ -200,12 +200,12 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
   <div class="title">Zones sensibles</div>
   <div class="sub">Avez-vous une douleur ou blessure nécessitant d'éviter certains exercices ?</div>
   <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:1.25rem;">
-    <div class="check-row" onclick="togZone('aucune')"><div class="chk" id="z-aucune"></div><span>Aucune zone à éviter</span></div>
-    <div class="check-row" onclick="togZone('dos')"><div class="chk" id="z-dos"></div><span>Dos / colonne vertébrale</span></div>
-    <div class="check-row" onclick="togZone('genoux')"><div class="chk" id="z-genoux"></div><span>Genoux</span></div>
-    <div class="check-row" onclick="togZone('epaules')"><div class="chk" id="z-epaules"></div><span>Épaules</span></div>
-    <div class="check-row" onclick="togZone('poignets')"><div class="chk" id="z-poignets"></div><span>Poignets / coudes</span></div>
-    <div class="check-row" onclick="togZone('hanches')"><div class="chk" id="z-hanches"></div><span>Hanches / chevilles</span></div>
+    <div class="check-row" onclick="togZone('none')"><div class="chk" id="z-none"></div><span>Aucune zone à éviter</span></div>
+    <div class="check-row" onclick="togZone('back')"><div class="chk" id="z-back"></div><span>Dos / colonne vertébrale</span></div>
+    <div class="check-row" onclick="togZone('knees')"><div class="chk" id="z-knees"></div><span>Genoux</span></div>
+    <div class="check-row" onclick="togZone('shoulders')"><div class="chk" id="z-shoulders"></div><span>Épaules</span></div>
+    <div class="check-row" onclick="togZone('wrists')"><div class="chk" id="z-wrists"></div><span>Poignets / coudes</span></div>
+    <div class="check-row" onclick="togZone('hips')"><div class="chk" id="z-hips"></div><span>Hanches / chevilles</span></div>
   </div>
   <button class="btn-p" id="b7" disabled onclick="go('s-8')">Continuer</button>
 </div>
@@ -245,14 +245,14 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
     <div class="wm">FitCoach</div>
     <div style="position:relative;z-index:1;">
       <div style="text-align:center;padding-bottom:.75rem;border-bottom:1px solid #f3f4f6;margin-bottom:.75rem;">
-        <div style="font-size:12px;color:#6b7280;" id="pdf-salle">FitCoach</div>
+        <div style="font-size:12px;color:#6b7280;">FitCoach</div>
         <div style="font-size:18px;font-weight:600;">FitCoach</div>
         <div style="height:2px;width:36px;margin:.5rem auto;background:#1a1a1a;border-radius:99px;"></div>
         <div style="font-size:11px;color:#6b7280;" id="pdf-date"></div>
       </div>
       <div class="motiv-box" id="pdf-motiv"></div>
       <div id="pdf-days"></div>
-      <div style="margin-top:.75rem;padding-top:.5rem;border-top:1px solid #f3f4f6;font-size:10px;color:#9ca3af;text-align:center;">FitCoach • Données supprimées après envoi</div>
+      <div style="margin-top:.75rem;padding-top:.5rem;border-top:1px solid #f3f4f6;font-size:10px;color:#9ca3af;text-align:center;">FitCoach - Donnees supprimees apres envoi</div>
     </div>
   </div>
   <button class="btn-p" onclick="envoyer()">📧 Envoyer à <span id="btn-dest"></span></button>
@@ -298,17 +298,17 @@ const STEPS=8;
 const MACHINES={
   machines:[
     {num:'1',name:'Leg extension'},{num:'2',name:'Leg curl'},{num:'3',name:'Prone leg curl'},
-    {num:'4',name:'Leg press'},{num:'5',name:'Hip adductor/abducteur'},{num:'6',name:'Glute'},
-    {num:'7',name:'Abdominal'},{num:'8',name:'Lat pulldown'},{num:'9',name:'Chin/Dip'},
-    {num:'10',name:'Pec fly/Rear delt'},{num:'11',name:'Seated row'},{num:'12',name:'Lateral raise'},
-    {num:'13',name:'Shoulder press'},{num:'14',name:'Chest press'},{num:'16',name:'Biceps curl'},
-    {num:'—',name:'Shoulder press 2'},{num:'—',name:'Vertical bench press'},
-    {num:'—',name:'Hack squat'},{num:'—',name:'Station poulie - Vis-à-vis'},
-    {num:'—',name:'Station poulie - Adjustable'},{num:'—',name:'Station poulie - Low row'},
-    {num:'—',name:'Station poulie - Lat pulldown'},{num:'—',name:'Glute trainer'},{num:'—',name:'Seated calf'}
+    {num:'4',name:'Leg press'},{num:'5',name:'Hip adductor abductor'},{num:'6',name:'Glute machine'},
+    {num:'7',name:'Abdominal machine'},{num:'8',name:'Lat pulldown'},{num:'9',name:'Chin Dip machine'},
+    {num:'10',name:'Pec fly Rear delt'},{num:'11',name:'Seated row'},{num:'12',name:'Lateral raise machine'},
+    {num:'13',name:'Shoulder press machine'},{num:'14',name:'Chest press'},{num:'16',name:'Biceps curl machine'},
+    {num:'X',name:'Shoulder press 2'},{num:'X',name:'Vertical bench press'},
+    {num:'X',name:'Hack squat'},{num:'X',name:'Cable station vis a vis'},
+    {num:'X',name:'Cable station adjustable'},{num:'X',name:'Cable station low row'},
+    {num:'X',name:'Cable station lat pulldown'},{num:'X',name:'Glute trainer'},{num:'X',name:'Seated calf machine'}
   ],
-  poids_libres:[{name:'Haltères'},{name:'Barres libres'},{name:'Cage à squat'},{name:'Banc plat'},{name:'Banc incliné'},{name:'Corde à sauter'}],
-  cardio:[{name:'Rameur'},{name:'Vélo'}]
+  freeweights:[{name:'Dumbbells'},{name:'Barbells'},{name:'Squat rack'},{name:'Flat bench'},{name:'Incline bench'},{name:'Jump rope'}],
+  cardio:[{name:'Rowing machine'},{name:'Stationary bike'}]
 };
 
 function prog(){for(let i=1;i<=STEPS;i++){const el=document.getElementById('p'+i);if(!el)continue;el.innerHTML='';for(let j=1;j<=STEPS;j++){const d=document.createElement('div');d.className='prog-d'+(j<=i?' on':'');el.appendChild(d);}}}
@@ -336,7 +336,7 @@ function selPrio(val){
     if(ud.prio.includes('haut')&&ud.prio.includes('bas'))document.getElementById('prio-tout').classList.add('sel');
   }
   const note=document.getElementById('prio-note');
-  note.textContent=ud.prio.length===2?'Corps entier sélectionné':'Priorité : '+(ud.prio.includes('haut')?'Haut du corps':'Bas du corps');
+  note.textContent=ud.prio.length===2?'Corps entier':'Priorite: '+(ud.prio.includes('haut')?'Haut du corps':'Bas du corps');
   note.style.display=ud.prio.length>0?'block':'none';
   const b=document.getElementById('b2');if(b&&ud.genre&&ud.prio.length>0)b.disabled=false;
 }
@@ -351,10 +351,10 @@ function togEquip(v,id){
 
 function togZone(v){
   const chk=document.getElementById('z-'+v);
-  if(v==='aucune'){ud.zones=['aucune'];document.querySelectorAll('[id^="z-"]').forEach(c=>{c.classList.remove('on');c.innerHTML='';});chk.classList.add('on');chk.innerHTML='✓';}
+  if(v==='none'){ud.zones=['none'];document.querySelectorAll('[id^="z-"]').forEach(c=>{c.classList.remove('on');c.innerHTML='';});chk.classList.add('on');chk.innerHTML='✓';}
   else{
-    const ai=ud.zones.indexOf('aucune');
-    if(ai>=0){ud.zones.splice(ai,1);document.getElementById('z-aucune').classList.remove('on');document.getElementById('z-aucune').innerHTML='';}
+    const ai=ud.zones.indexOf('none');
+    if(ai>=0){ud.zones.splice(ai,1);document.getElementById('z-none').classList.remove('on');document.getElementById('z-none').innerHTML='';}
     const idx=ud.zones.indexOf(v);
     if(idx>=0){ud.zones.splice(idx,1);chk.classList.remove('on');chk.innerHTML='';}
     else{ud.zones.push(v);chk.classList.add('on');chk.innerHTML='✓';}
@@ -369,10 +369,10 @@ function fillRecap(){
   const t=document.getElementById('taille').value,p=document.getElementById('poids').value,a=document.getElementById('age').value;
   const prioLbl=ud.prio.includes('haut')&&ud.prio.includes('bas')?'Corps entier':ud.prio.includes('haut')?'Haut du corps':'Bas du corps';
   document.getElementById('r-obj').textContent=ud.obj||'—';
-  document.getElementById('r-genre').textContent=(ud.genre||'—')+' • '+prioLbl;
+  document.getElementById('r-genre').textContent=(ud.genre||'—')+' - '+prioLbl;
   document.getElementById('r-morpho').textContent=(t?t+'cm ':' ')+(p?p+'kg ':' ')+(a?a+' ans':'');
   document.getElementById('r-niv').textContent=ud.niv||'—';
-  document.getElementById('r-plan').textContent=(ud.jours||'—')+' j/sem • '+(ud.duree||'—');
+  document.getElementById('r-plan').textContent=(ud.jours||'—')+' j/sem - '+(ud.duree||'—');
   document.getElementById('r-equip').textContent=ud.equips.join(', ')||'—';
   emailVal='';cguOk=false;
   document.getElementById('email-disp').innerHTML='<span class="cursor"></span>';
@@ -408,75 +408,68 @@ function renderKbd(){
 function updDisp(){document.getElementById('email-disp').innerHTML=emailVal+'<span class="cursor"></span>';checkB8();}
 
 async function generer(){
-  ud.email=emailVal;go('s-gen');
-  const steps=['Analyse de votre profil...','Sélection des machines adaptées...','Construction du programme...','Ajout des conseils personnalisés...','Finalisation...'];
+  ud.email=emailVal;
+  go('s-gen');
+  const steps=['Analyzing profile...','Selecting exercises...','Building program...','Adding tips...','Done!'];
   let si=0;
-  const iv=setInterval(()=>{si++;document.getElementById('lbar-f').style.width=Math.min(85,Math.round((si/steps.length)*85))+'%';document.getElementById('gen-txt').textContent=steps[Math.min(si,steps.length-1)];document.getElementById('gen-step').textContent='Étape '+Math.min(si+1,steps.length)+'/'+steps.length;},800);
+  const iv=setInterval(()=>{
+    si++;
+    document.getElementById('lbar-f').style.width=Math.min(85,Math.round((si/steps.length)*85))+'%';
+    document.getElementById('gen-txt').textContent=steps[Math.min(si,steps.length-1)];
+    document.getElementById('gen-step').textContent='Step '+Math.min(si+1,steps.length)+'/'+steps.length;
+  },800);
 
   let ml='';
-  if(ud.equips.includes('machines guidées')){ml+='\nMACHINES :\n';MACHINES.machines.forEach(m=>ml+=`- [${m.num}] ${m.name}\n`);}
-  if(ud.equips.includes('poids libres')){ml+='\nPOIDS LIBRES :\n';MACHINES.poids_libres.forEach(m=>ml+=`- ${m.name}\n`);}
-  if(ud.equips.includes('cardio')){ml+='\nCARDIO :\n';MACHINES.cardio.forEach(m=>ml+=`- ${m.name}\n`);}
+  if(ud.equips.includes('machines')){ml+=' MACHINES: ';MACHINES.machines.forEach(m=>ml+=m.num+'-'+m.name+', ');}
+  if(ud.equips.includes('freeweights')){ml+=' FREEWEIGHTS: ';MACHINES.freeweights.forEach(m=>ml+=m.name+', ');}
+  if(ud.equips.includes('cardio')){ml+=' CARDIO: ';MACHINES.cardio.forEach(m=>ml+=m.name+', ');}
 
-  const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'corps entier':ud.prio.includes('haut')?'haut du corps':'bas du corps';
-  const zonesText=ud.zones.includes('aucune')?'aucune':'éviter : '+ud.zones.join(', ');
+  const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'full body':ud.prio.includes('haut')?'upper body':'lower body';
+  const zonesText=ud.zones.includes('none')?'none':ud.zones.join(' ');
 
-const prompt=`Generate a fitness program in JSON only. No apostrophes in values. Equipment:${ml} Profile: goal=${ud.obj}, gender=${ud.genre}, priority=${prioText}, height=${document.getElementById('taille').value}cm, weight=${document.getElementById('poids').value}kg, age=${document.getElementById('age').value}, level=${ud.niv}, frequency=${ud.jours}days/week, duration=${ud.duree}, avoid=${zonesText}. Output ONLY valid JSON: {"duree_programme":"X semaines","organisation":"desc","motivation":"message","jours":[{"label":"Jour A","exercices":[{"num":"1","nom":"Exercise","series":"3","reps":"10","repos":"90s","conseil":"tip"}]}]}`;
+  const prompt='Generate a '+ud.jours+' day per week fitness program for goal:'+ud.obj+' gender:'+ud.genre+' priority:'+prioText+' height:'+document.getElementById('taille').value+'cm weight:'+document.getElementById('poids').value+'kg age:'+document.getElementById('age').value+' level:'+ud.niv+' duration:'+ud.duree+' avoid:'+zonesText+' equipment:'+ml+' CRITICAL: respond with ONLY a JSON object, no explanation, no markdown. Use this exact format: {"duree_programme":"4 weeks","organisation":"Full body","motivation":"Great work","jours":[{"label":"Day A","exercices":[{"num":"1","nom":"Leg extension","series":"3","reps":"12","repos":"60s","conseil":"Good form"}]}]}';
+
   try{
-    const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1500,messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('/api/generate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:2000,messages:[{role:'user',content:prompt}]})
+    });
     const data=await res.json();
     clearInterval(iv);
     document.getElementById('lbar-f').style.width='100%';
-    document.getElementById('gen-txt').textContent='Programme généré ! 🎉';
-if(data.ok && data.programme){
-  generatedProgram=data.programme;
-  console.log('programme ok',generatedProgram);
-  go('s-pdf');
-  document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
-  document.getElementById('btn-dest').textContent=ud.email;
-  document.getElementById('pdf-motiv').textContent='"'+(generatedProgram.motivation||'Bonne séance!')+'"';
-  let html='';
-  (generatedProgram.jours||[]).forEach(j=>{
-    html+=`<div class="day-block"><div class="day-badge">${j.label||''}</div>`;
-    (j.exercices||[]).forEach(ex=>{
-      html+=`<div class="ex-row"><div class="ex-num">${ex.num||'•'}</div><span class="ex-name">${ex.nom||''}</span><span class="ex-sets">${ex.series||''}×${ex.reps||''} • ${ex.repos||''}</span></div>`;
-    });
-    html+='</div>';
-  });
-  document.getElementById('pdf-days').innerHTML=html;
-  return;
-}
-const text = data.raw || JSON.stringify(data);
+
+    if(data.ok && data.programme){
+      generatedProgram=data.programme;
+      document.getElementById('gen-txt').textContent='Programme pret!';
+      setTimeout(()=>{
+        go('s-pdf');
+        document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+        document.getElementById('btn-dest').textContent=ud.email;
+        document.getElementById('pdf-motiv').textContent=generatedProgram.motivation||'Good work!';
+        let html='<div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:.75rem;">'+
+          (generatedProgram.duree_programme||'')+' - '+ud.jours+' days/week - '+ud.duree+' - '+(generatedProgram.organisation||'')+'</div>';
+        (generatedProgram.jours||[]).forEach(function(j){
+          html+='<div class="day-block"><div class="day-badge">'+(j.label||'')+'</div>';
+          (j.exercices||[]).forEach(function(ex){
+            html+='<div class="ex-row"><div class="ex-num">'+(ex.num||'x')+'</div><span class="ex-name">'+(ex.nom||'')+'</span><span class="ex-sets">'+(ex.series||'')+'x'+(ex.reps||'')+' - '+(ex.repos||'')+'</span></div>';
+            if(ex.conseil)html+='<div style="font-size:11px;color:#6b7280;padding:2px 0 4px 30px;">tip: '+ex.conseil+'</div>';
+          });
+          html+='</div>';
+        });
+        document.getElementById('pdf-days').innerHTML=html;
+      },300);
+    } else {
+      document.getElementById('gen-txt').textContent='Erreur: '+JSON.stringify(data).substring(0,150);
+      document.getElementById('lbar-f').style.background='#ef4444';
+    }
   }catch(err){
     clearInterval(iv);
-    document.getElementById('gen-txt').textContent='Erreur : '+err.message+' | '+JSON.stringify(err);
+    document.getElementById('gen-txt').textContent='Erreur: '+err.message;
     document.getElementById('lbar-f').style.background='#ef4444';
   }
 }
 
-function showPDF(){
-  try{
-    go('s-pdf');
-    document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
-    document.getElementById('btn-dest').textContent=ud.email;
-    document.getElementById('pdf-motiv').textContent='"'+(generatedProgram.motivation||'Bonne séance !')+'"';
-    let html=`<div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:.75rem;">${generatedProgram.duree_programme||''} • ${ud.jours} j/sem • ${ud.duree} • ${generatedProgram.organisation||''}</div>`;
-    const jours=generatedProgram.jours||[];
-    jours.forEach(j=>{
-      html+=`<div class="day-block"><div class="day-badge">${j.label||''}</div>`;
-      const exos=j.exercices||[];
-      exos.forEach(ex=>{
-        html+=`<div class="ex-row"><div class="ex-num">${ex.num||'•'}</div><span class="ex-name">${ex.nom||''}</span><span class="ex-sets">${ex.series||''}×${ex.reps||''} • ${ex.repos||''}</span></div>`;
-        if(ex.conseil)html+=`<div style="font-size:11px;color:#6b7280;padding:2px 0 4px 30px;font-style:italic;">💡 ${ex.conseil}</div>`;
-      });
-      html+='</div>';
-    });
-    document.getElementById('pdf-days').innerHTML=html;
-  }catch(e){
-    document.getElementById('gen-txt').textContent='Erreur showPDF: '+e.message;
-    go('s-gen');
-  }
-}
 function envoyer(){document.getElementById('ok-email').textContent=ud.email;go('s-ok');}
 
 function restart(){
