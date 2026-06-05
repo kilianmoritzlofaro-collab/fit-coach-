@@ -73,8 +73,8 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
     <div style="font-size:14px;color:#6b7280;margin-bottom:2rem;">Votre programme personnalisé en 2 minutes</div>
     <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:280px;margin-bottom:2rem;">
       <div style="display:flex;align-items:center;gap:10px;background:#f9fafb;border-radius:12px;padding:10px 14px;font-size:13px;color:#6b7280;">💪 Programme de musculation adapté</div>
-      <div style="display:flex;align-items:center;gap:10px;background:#f9fafb;border-radius:12px;padding:10px 14px;font-size:13px;color:#6b7280;">❤️ Cardio & perte de poids</div>
-      <div style="display:flex;align-items:center;gap:10px;background:#f9fafb;border-radius:12px;padding:10px 14px;font-size:13px;color:#6b7280;">📧 Reçu par email en PDF</div>
+      <div style="display:flex;align-items:center;gap:10px;background:#f9fafb;border-radius:12px;padding:10px 14px;font-size:13px;color:#6b7280;">❤️ Cardio et perte de poids</div>
+      <div style="display:flex;align-items:center;gap:10px;background:#f9fafb;border-radius:12px;padding:10px 14px;font-size:13px;color:#6b7280;">📧 Recu par email en PDF</div>
     </div>
     <div style="background:#1a1a1a;color:#fff;border-radius:12px;padding:14px 40px;font-size:16px;font-weight:500;">Touchez pour commencer</div>
   </div>
@@ -85,7 +85,7 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
       <div id="hold-fill" style="width:0%;height:100%;background:#1a1a1a;"></div>
     </div>
   </div>
-  <div class="hold-hint">Maintenez le coin ↘ pour l'espace gérant</div>
+  <div class="hold-hint">Maintenez le coin pour espace gerant</div>
 </div>
 
 <div class="screen" id="s-home">
@@ -93,37 +93,37 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
     <div style="text-align:center;margin-bottom:2.5rem;">
       <div style="font-size:36px;margin-bottom:.75rem;">🏋️</div>
       <div style="font-size:22px;font-weight:500;margin-bottom:.25rem;" id="h-salle">FitCoach</div>
-      <div style="font-size:14px;color:#6b7280;">Programme personnalisé en 2 minutes</div>
+      <div style="font-size:14px;color:#6b7280;">Programme personnalise en 2 minutes</div>
     </div>
-    <button class="btn-p" onclick="go('s-1')">→ Créer mon programme</button>
+    <button class="btn-p" onclick="go('s-1')">Creer mon programme</button>
   </div>
 </div>
 
 <div class="screen" id="s-1">
-  <button class="btn-back" onclick="go('s-home')">← Retour</button>
+  <button class="btn-back" onclick="go('s-home')">Retour</button>
   <div class="prog" id="p1"></div>
   <div class="title">Quel est votre objectif ?</div>
   <div class="sub">Choisissez ce qui vous correspond le mieux.</div>
   <div class="grid2">
-    <div class="card-btn" onclick="selS(this,'obj')" data-val="muscle gain"><span class="ic">💪</span>Prise de muscle</div>
-    <div class="card-btn" onclick="selS(this,'obj')" data-val="weight loss"><span class="ic">🔥</span>Perte de poids</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="prise de muscle"><span class="ic">💪</span>Prise de muscle</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="perte de poids"><span class="ic">🔥</span>Perte de poids</div>
     <div class="card-btn" onclick="selS(this,'obj')" data-val="cardio endurance"><span class="ic">❤️</span>Cardio</div>
-    <div class="card-btn" onclick="selS(this,'obj')" data-val="general fitness"><span class="ic">⭐</span>Forme générale</div>
+    <div class="card-btn" onclick="selS(this,'obj')" data-val="forme generale"><span class="ic">⭐</span>Forme generale</div>
   </div>
   <button class="btn-p" id="b1" disabled onclick="go('s-2')">Continuer</button>
 </div>
 
 <div class="screen" id="s-2">
-  <button class="btn-back" onclick="go('s-1')">← Retour</button>
+  <button class="btn-back" onclick="go('s-1')">Retour</button>
   <div class="prog" id="p2"></div>
   <div class="title">Votre profil</div>
   <div class="sec-label">Genre</div>
   <div class="grid3" style="margin-bottom:1.25rem;">
-    <div class="card-btn" onclick="selS(this,'genre')" data-val="male"><span class="ic">👨</span>Homme</div>
-    <div class="card-btn" onclick="selS(this,'genre')" data-val="female"><span class="ic">👩</span>Femme</div>
-    <div class="card-btn" onclick="selS(this,'genre')" data-val="other"><span class="ic">🧑</span>Autre</div>
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="homme"><span class="ic">👨</span>Homme</div>
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="femme"><span class="ic">👩</span>Femme</div>
+    <div class="card-btn" onclick="selS(this,'genre')" data-val="autre"><span class="ic">🧑</span>Autre</div>
   </div>
-  <div class="sec-label">Priorité corps</div>
+  <div class="sec-label">Priorite corps</div>
   <div class="grid3" style="margin-bottom:.75rem;">
     <div class="card-btn" id="prio-haut" onclick="selPrio('haut')"><span class="ic">⬆️</span>Haut</div>
     <div class="card-btn" id="prio-bas" onclick="selPrio('bas')"><span class="ic">⬇️</span>Bas</div>
@@ -134,10 +134,10 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
 </div>
 
 <div class="screen" id="s-3">
-  <button class="btn-back" onclick="go('s-2')">← Retour</button>
+  <button class="btn-back" onclick="go('s-2')">Retour</button>
   <div class="prog" id="p3"></div>
   <div class="title">Votre morphologie</div>
-  <div class="sub">Ces données sont supprimées après envoi.</div>
+  <div class="sub">Ces donnees sont supprimees apres envoi.</div>
   <div class="inp-row"><input class="inp" type="number" id="taille" placeholder="175"/><span class="inp-unit">cm</span></div>
   <div class="inp-row"><input class="inp" type="number" id="poids" placeholder="75"/><span class="inp-unit">kg</span></div>
   <div class="inp-row"><input class="inp" type="number" id="age" placeholder="30"/><span class="inp-unit">ans</span></div>
@@ -145,20 +145,20 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
 </div>
 
 <div class="screen" id="s-4">
-  <button class="btn-back" onclick="go('s-3')">← Retour</button>
+  <button class="btn-back" onclick="go('s-3')">Retour</button>
   <div class="prog" id="p4"></div>
   <div class="title">Votre niveau</div>
-  <div class="sub">Soyez honnête pour un programme vraiment adapté.</div>
+  <div class="sub">Soyez honnete pour un programme vraiment adapte.</div>
   <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1.25rem;">
-    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="beginner"><strong>Débutant</strong><br><span style="font-size:11px;color:#6b7280;">Moins de 6 mois de pratique</span></div>
-    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="intermediate"><strong>Intermédiaire</strong><br><span style="font-size:11px;color:#6b7280;">6 mois à 2 ans de pratique</span></div>
-    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="advanced"><strong>Avancé</strong><br><span style="font-size:11px;color:#6b7280;">Plus de 2 ans de pratique régulière</span></div>
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="debutant"><strong>Debutant</strong><br><span style="font-size:11px;color:#6b7280;">Moins de 6 mois de pratique</span></div>
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="intermediaire"><strong>Intermediaire</strong><br><span style="font-size:11px;color:#6b7280;">6 mois a 2 ans de pratique</span></div>
+    <div class="card-btn" style="text-align:left;padding:13px 15px;" onclick="selS(this,'niv')" data-val="avance"><strong>Avance</strong><br><span style="font-size:11px;color:#6b7280;">Plus de 2 ans de pratique reguliere</span></div>
   </div>
   <button class="btn-p" id="b4" disabled onclick="go('s-5')">Continuer</button>
 </div>
 
 <div class="screen" id="s-5">
-  <button class="btn-back" onclick="go('s-4')">← Retour</button>
+  <button class="btn-back" onclick="go('s-4')">Retour</button>
   <div class="prog" id="p5"></div>
   <div class="title">Votre planning</div>
   <div class="sec-label">Jours par semaine</div>
@@ -171,76 +171,76 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
     <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="6">6</div>
     <div class="card-btn" style="padding:10px 4px;font-size:14px;" onclick="selS(this,'jours')" data-val="7">7</div>
   </div>
-  <div class="sec-label">Durée par séance</div>
+  <div class="sec-label">Duree par seance</div>
   <div class="grid2" style="margin-bottom:1.25rem;">
     <div class="card-btn" onclick="selS(this,'duree')" data-val="30min">30 min</div>
     <div class="card-btn" onclick="selS(this,'duree')" data-val="45min">45 min</div>
-    <div class="card-btn" onclick="selS(this,'duree')" data-val="1hour">1 heure</div>
-    <div class="card-btn" onclick="selS(this,'duree')" data-val="90min">1h30</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="1heure">1 heure</div>
+    <div class="card-btn" onclick="selS(this,'duree')" data-val="1h30">1h30</div>
   </div>
   <button class="btn-p" id="b5" disabled onclick="go('s-6')">Continuer</button>
 </div>
 
 <div class="screen" id="s-6">
-  <button class="btn-back" onclick="go('s-5')">← Retour</button>
+  <button class="btn-back" onclick="go('s-5')">Retour</button>
   <div class="prog" id="p6"></div>
-  <div class="title">Équipements souhaités</div>
-  <div class="sub">Sélectionnez tout ce que vous voulez utiliser.</div>
+  <div class="title">Equipements souhaites</div>
+  <div class="sub">Selectionnez tout ce que vous voulez utiliser.</div>
   <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:1.25rem;">
-    <div class="check-row" onclick="togEquip('machines','m')"><div class="chk" id="ce-m"></div><div><div style="font-weight:500;">Machines guidées</div><div style="font-size:12px;color:#6b7280;">Leg press, poulie, chest press...</div></div></div>
-    <div class="check-row" onclick="togEquip('freeweights','l')"><div class="chk" id="ce-l"></div><div><div style="font-weight:500;">Poids libres</div><div style="font-size:12px;color:#6b7280;">Haltères, barres, cage à squat...</div></div></div>
-    <div class="check-row" onclick="togEquip('cardio','c')"><div class="chk" id="ce-c"></div><div><div style="font-weight:500;">Cardio</div><div style="font-size:12px;color:#6b7280;">Rameur, vélo...</div></div></div>
+    <div class="check-row" onclick="togEquip('machines','m')"><div class="chk" id="ce-m"></div><div><div style="font-weight:500;">Machines guidees</div><div style="font-size:12px;color:#6b7280;">Leg press, poulie, chest press...</div></div></div>
+    <div class="check-row" onclick="togEquip('poids libres','l')"><div class="chk" id="ce-l"></div><div><div style="font-weight:500;">Poids libres</div><div style="font-size:12px;color:#6b7280;">Halteres, barres, cage a squat...</div></div></div>
+    <div class="check-row" onclick="togEquip('cardio','c')"><div class="chk" id="ce-c"></div><div><div style="font-weight:500;">Cardio</div><div style="font-size:12px;color:#6b7280;">Rameur, velo...</div></div></div>
   </div>
   <button class="btn-p" id="b6" disabled onclick="go('s-7')">Continuer</button>
 </div>
 
 <div class="screen" id="s-7">
-  <button class="btn-back" onclick="go('s-6')">← Retour</button>
+  <button class="btn-back" onclick="go('s-6')">Retour</button>
   <div class="prog" id="p7"></div>
   <div class="title">Zones sensibles</div>
-  <div class="sub">Avez-vous une douleur ou blessure nécessitant d'éviter certains exercices ?</div>
+  <div class="sub">Avez-vous une douleur ou blessure ?</div>
   <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:1.25rem;">
-    <div class="check-row" onclick="togZone('none')"><div class="chk" id="z-none"></div><span>Aucune zone à éviter</span></div>
-    <div class="check-row" onclick="togZone('back')"><div class="chk" id="z-back"></div><span>Dos / colonne vertébrale</span></div>
-    <div class="check-row" onclick="togZone('knees')"><div class="chk" id="z-knees"></div><span>Genoux</span></div>
-    <div class="check-row" onclick="togZone('shoulders')"><div class="chk" id="z-shoulders"></div><span>Épaules</span></div>
-    <div class="check-row" onclick="togZone('wrists')"><div class="chk" id="z-wrists"></div><span>Poignets / coudes</span></div>
-    <div class="check-row" onclick="togZone('hips')"><div class="chk" id="z-hips"></div><span>Hanches / chevilles</span></div>
+    <div class="check-row" onclick="togZone('aucune')"><div class="chk" id="z-aucune"></div><span>Aucune zone a eviter</span></div>
+    <div class="check-row" onclick="togZone('dos')"><div class="chk" id="z-dos"></div><span>Dos</span></div>
+    <div class="check-row" onclick="togZone('genoux')"><div class="chk" id="z-genoux"></div><span>Genoux</span></div>
+    <div class="check-row" onclick="togZone('epaules')"><div class="chk" id="z-epaules"></div><span>Epaules</span></div>
+    <div class="check-row" onclick="togZone('poignets')"><div class="chk" id="z-poignets"></div><span>Poignets</span></div>
+    <div class="check-row" onclick="togZone('hanches')"><div class="chk" id="z-hanches"></div><span>Hanches</span></div>
   </div>
   <button class="btn-p" id="b7" disabled onclick="go('s-8')">Continuer</button>
 </div>
 
 <div class="screen" id="s-8">
-  <button class="btn-back" onclick="go('s-7')">← Retour</button>
+  <button class="btn-back" onclick="go('s-7')">Retour</button>
   <div class="prog" id="p8"></div>
   <div class="title">Recevoir mon programme</div>
   <div class="recap-card">
-    <div class="recap-row"><span class="rl">Objectif</span><span class="rv" id="r-obj">—</span></div>
-    <div class="recap-row"><span class="rl">Profil</span><span class="rv" id="r-genre">—</span></div>
-    <div class="recap-row"><span class="rl">Morphologie</span><span class="rv" id="r-morpho">—</span></div>
-    <div class="recap-row"><span class="rl">Niveau</span><span class="rv" id="r-niv">—</span></div>
-    <div class="recap-row"><span class="rl">Planning</span><span class="rv" id="r-plan">—</span></div>
-    <div class="recap-row"><span class="rl">Équipements</span><span class="rv" id="r-equip">—</span></div>
+    <div class="recap-row"><span class="rl">Objectif</span><span class="rv" id="r-obj">-</span></div>
+    <div class="recap-row"><span class="rl">Profil</span><span class="rv" id="r-genre">-</span></div>
+    <div class="recap-row"><span class="rl">Morphologie</span><span class="rv" id="r-morpho">-</span></div>
+    <div class="recap-row"><span class="rl">Niveau</span><span class="rv" id="r-niv">-</span></div>
+    <div class="recap-row"><span class="rl">Planning</span><span class="rv" id="r-plan">-</span></div>
+    <div class="recap-row"><span class="rl">Equipements</span><span class="rv" id="r-equip">-</span></div>
   </div>
   <div class="email-disp" id="email-disp"><span class="cursor"></span></div>
   <div id="kbd-zone"></div>
-  <div class="note" style="margin-top:8px;">🔒 Données supprimées après envoi. <span style="cursor:pointer;color:#111;" onclick="togCGU()"><span id="cgu-chk">☐</span> J'accepte</span></div>
-  <button class="btn-p" id="b8" disabled onclick="generer()" style="margin-top:8px;">✨ Générer mon programme avec l'IA</button>
+  <div class="note" style="margin-top:8px;">Donnees supprimees apres envoi. <span style="cursor:pointer;color:#111;" onclick="togCGU()"><span id="cgu-chk">non</span> J accepte</span></div>
+  <button class="btn-p" id="b8" disabled onclick="generer()" style="margin-top:8px;">Generer mon programme avec IA</button>
 </div>
 
 <div class="screen" id="s-gen">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
     <div style="font-size:40px;margin-bottom:1rem;">🤖</div>
-    <div class="title" style="text-align:center;">L'IA génère votre programme</div>
-    <div class="sub" style="text-align:center;" id="gen-txt">Analyse de votre profil...</div>
+    <div class="title" style="text-align:center;">IA genere votre programme</div>
+    <div class="sub" style="text-align:center;" id="gen-txt">Analyse du profil...</div>
     <div class="lbar" style="margin:1.5rem 0;"><div class="lbar-f" id="lbar-f"></div></div>
-    <div style="font-size:12px;color:#6b7280;" id="gen-step">Étape 1/5</div>
+    <div style="font-size:12px;color:#6b7280;" id="gen-step">Etape 1/5</div>
   </div>
 </div>
 
 <div class="screen" id="s-pdf">
-  <div class="title" style="margin-bottom:.25rem;">Votre programme ✅</div>
-  <div class="sub" style="margin-bottom:.75rem;">Généré par l'IA • Prêt à envoyer</div>
+  <div class="title" style="margin-bottom:.25rem;">Votre programme OK</div>
+  <div class="sub" style="margin-bottom:.75rem;">Genere par IA - Pret a envoyer</div>
   <div class="pdf-wrap">
     <div class="wm">FitCoach</div>
     <div style="position:relative;z-index:1;">
@@ -255,50 +255,50 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
       <div style="margin-top:.75rem;padding-top:.5rem;border-top:1px solid #f3f4f6;font-size:10px;color:#9ca3af;text-align:center;">FitCoach - Donnees supprimees apres envoi</div>
     </div>
   </div>
-  <button class="btn-p" onclick="envoyer()">📧 Envoyer à <span id="btn-dest"></span></button>
+  <button class="btn-p" onclick="envoyer()">Envoyer a <span id="btn-dest"></span></button>
   <button class="btn-s" onclick="restart()">Nouvelle session</button>
 </div>
 
 <div class="screen" id="s-ok">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;">
     <div style="font-size:48px;margin-bottom:1rem;">✅</div>
-    <div class="title" style="text-align:center;">Programme envoyé !</div>
-    <div class="sub" style="text-align:center;">PDF envoyé à <strong id="ok-email"></strong>.<br>Vos données ont été supprimées.</div>
+    <div class="title" style="text-align:center;">Programme envoye !</div>
+    <div class="sub" style="text-align:center;">Envoye a <strong id="ok-email"></strong>. Donnees supprimees.</div>
     <button class="btn-p" onclick="restart()" style="margin-top:2rem;">Nouvelle session</button>
   </div>
 </div>
 
 <div class="screen" id="s-admin-login">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:360px;margin:0 auto;width:100%;">
-    <div style="font-size:11px;color:#6b7280;border:1px solid #e5e7eb;border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:1rem;">Espace gérant</div>
+    <div style="font-size:11px;color:#6b7280;border:1px solid #e5e7eb;border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:1rem;">Espace gerant</div>
     <div class="title">Connexion</div>
     <div id="lf" style="display:flex;flex-direction:column;gap:10px;margin-bottom:1rem;">
       <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="email" id="a-email" placeholder="email@masalle.com"/>
       <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="password" id="a-pwd" placeholder="Mot de passe"/>
       <button class="btn-p" style="margin:0;" onclick="doLogin()">Se connecter</button>
-      <button class="btn-s" style="margin:0;" onclick="showReg()">Créer un compte salle</button>
+      <button class="btn-s" style="margin:0;" onclick="showReg()">Creer un compte salle</button>
     </div>
     <div id="rf" style="display:none;flex-direction:column;gap:10px;margin-bottom:1rem;">
       <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="text" id="r-salle" placeholder="Nom de la salle"/>
       <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="email" id="r-mail" placeholder="email@masalle.com"/>
       <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="password" id="r-pwd" placeholder="Mot de passe"/>
-      <button class="btn-p" style="margin:0;" onclick="doReg()">Créer mon compte</button>
-      <button class="btn-s" style="margin:0;" onclick="showLogin()">J'ai déjà un compte</button>
+      <button class="btn-p" style="margin:0;" onclick="doReg()">Creer mon compte</button>
+      <button class="btn-s" style="margin:0;" onclick="showLogin()">J ai deja un compte</button>
     </div>
-    <button class="btn-back" onclick="go('s-veille')" style="justify-content:center;margin-top:.5rem;">← Retour</button>
+    <button class="btn-back" onclick="go('s-veille')" style="justify-content:center;margin-top:.5rem;">Retour</button>
   </div>
 </div>
 
 </div>
 
 <script>
-let ud={obj:null,genre:null,prio:[],niv:null,jours:null,duree:null,equips:[],zones:[]};
-let emailVal='',cguOk=false,showNums=false,generatedProgram=null,holdInterval=null;
-const STEPS=8;
-const MACHINES={
+var ud={obj:null,genre:null,prio:[],niv:null,jours:null,duree:null,equips:[],zones:[]};
+var emailVal='',cguOk=false,showNums=false,generatedProgram=null,holdInterval=null;
+var STEPS=8;
+var MACHINES={
   machines:[
     {num:'1',name:'Leg extension'},{num:'2',name:'Leg curl'},{num:'3',name:'Prone leg curl'},
-    {num:'4',name:'Leg press'},{num:'5',name:'Hip adductor abductor'},{num:'6',name:'Glute machine'},
+    {num:'4',name:'Leg press'},{num:'5',name:'Hip adductor abducteur'},{num:'6',name:'Glute machine'},
     {num:'7',name:'Abdominal machine'},{num:'8',name:'Lat pulldown'},{num:'9',name:'Chin Dip machine'},
     {num:'10',name:'Pec fly Rear delt'},{num:'11',name:'Seated row'},{num:'12',name:'Lateral raise machine'},
     {num:'13',name:'Shoulder press machine'},{num:'14',name:'Chest press'},{num:'16',name:'Biceps curl machine'},
@@ -307,101 +307,101 @@ const MACHINES={
     {num:'X',name:'Cable station adjustable'},{num:'X',name:'Cable station low row'},
     {num:'X',name:'Cable station lat pulldown'},{num:'X',name:'Glute trainer'},{num:'X',name:'Seated calf machine'}
   ],
-  freeweights:[{name:'Dumbbells'},{name:'Barbells'},{name:'Squat rack'},{name:'Flat bench'},{name:'Incline bench'},{name:'Jump rope'}],
-  cardio:[{name:'Rowing machine'},{name:'Stationary bike'}]
+  poids_libres:[{name:'Halteres'},{name:'Barres libres'},{name:'Cage a squat'},{name:'Banc plat'},{name:'Banc incline'},{name:'Corde a sauter'}],
+  cardio:[{name:'Rameur'},{name:'Velo'}]
 };
 
-function prog(){for(let i=1;i<=STEPS;i++){const el=document.getElementById('p'+i);if(!el)continue;el.innerHTML='';for(let j=1;j<=STEPS;j++){const d=document.createElement('div');d.className='prog-d'+(j<=i?' on':'');el.appendChild(d);}}}
+function prog(){for(var i=1;i<=STEPS;i++){var el=document.getElementById('p'+i);if(!el)continue;el.innerHTML='';for(var j=1;j<=STEPS;j++){var d=document.createElement('div');d.className='prog-d'+(j<=i?' on':'');el.appendChild(d);}}}
 prog();
 
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='s-8'){fillRecap();buildKbd();}}
+function go(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.getElementById(id).classList.add('active');if(id==='s-8'){fillRecap();buildKbd();}}
 
 function selS(el,key){
-  const scr=el.closest('.screen');
-  scr.querySelectorAll('.card-btn').forEach(b=>{if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+key+"'"))b.classList.remove('sel');});
+  var scr=el.closest('.screen');
+  scr.querySelectorAll('.card-btn').forEach(function(b){if(b.getAttribute('onclick')&&b.getAttribute('onclick').indexOf("'"+key+"'")>=0)b.classList.remove('sel');});
   el.classList.add('sel');ud[key]=el.dataset.val;
-  if(key==='obj'){const b=document.getElementById('b1');if(b)b.disabled=false;}
-  if(key==='niv'){const b=document.getElementById('b4');if(b)b.disabled=false;}
-  if(key==='jours'||key==='duree'){const b=document.getElementById('b5');if(b&&ud.jours&&ud.duree)b.disabled=false;}
-  if(key==='genre'){const b=document.getElementById('b2');if(b&&ud.genre&&ud.prio.length>0)b.disabled=false;}
+  if(key==='obj'){var b=document.getElementById('b1');if(b)b.disabled=false;}
+  if(key==='niv'){var b=document.getElementById('b4');if(b)b.disabled=false;}
+  if(key==='jours'||key==='duree'){var b=document.getElementById('b5');if(b&&ud.jours&&ud.duree)b.disabled=false;}
+  if(key==='genre'){var b=document.getElementById('b2');if(b&&ud.genre&&ud.prio.length>0)b.disabled=false;}
 }
 
 function selPrio(val){
-  if(val==='tout'){ud.prio=['haut','bas'];['haut','bas','tout'].forEach(v=>document.getElementById('prio-'+v).classList.add('sel'));}
+  if(val==='tout'){ud.prio=['haut','bas'];['haut','bas','tout'].forEach(function(v){document.getElementById('prio-'+v).classList.add('sel');});}
   else{
     document.getElementById('prio-tout').classList.remove('sel');
-    const idx=ud.prio.indexOf(val);
+    var idx=ud.prio.indexOf(val);
     if(idx>=0){ud.prio.splice(idx,1);document.getElementById('prio-'+val).classList.remove('sel');}
     else{ud.prio.push(val);document.getElementById('prio-'+val).classList.add('sel');}
-    if(ud.prio.includes('haut')&&ud.prio.includes('bas'))document.getElementById('prio-tout').classList.add('sel');
+    if(ud.prio.indexOf('haut')>=0&&ud.prio.indexOf('bas')>=0)document.getElementById('prio-tout').classList.add('sel');
   }
-  const note=document.getElementById('prio-note');
-  note.textContent=ud.prio.length===2?'Corps entier':'Priorite: '+(ud.prio.includes('haut')?'Haut du corps':'Bas du corps');
+  var note=document.getElementById('prio-note');
+  note.textContent=ud.prio.length===2?'Corps entier':'Priorite: '+(ud.prio.indexOf('haut')>=0?'Haut du corps':'Bas du corps');
   note.style.display=ud.prio.length>0?'block':'none';
-  const b=document.getElementById('b2');if(b&&ud.genre&&ud.prio.length>0)b.disabled=false;
+  var b=document.getElementById('b2');if(b&&ud.genre&&ud.prio.length>0)b.disabled=false;
 }
 
 function togEquip(v,id){
-  const chk=document.getElementById('ce-'+id);
-  const idx=ud.equips.indexOf(v);
+  var chk=document.getElementById('ce-'+id);
+  var idx=ud.equips.indexOf(v);
   if(idx>=0){ud.equips.splice(idx,1);chk.classList.remove('on');chk.innerHTML='';}
-  else{ud.equips.push(v);chk.classList.add('on');chk.innerHTML='✓';}
-  const b=document.getElementById('b6');if(b)b.disabled=ud.equips.length===0;
+  else{ud.equips.push(v);chk.classList.add('on');chk.innerHTML='OK';}
+  var b=document.getElementById('b6');if(b)b.disabled=ud.equips.length===0;
 }
 
 function togZone(v){
-  const chk=document.getElementById('z-'+v);
-  if(v==='none'){ud.zones=['none'];document.querySelectorAll('[id^="z-"]').forEach(c=>{c.classList.remove('on');c.innerHTML='';});chk.classList.add('on');chk.innerHTML='✓';}
+  var chk=document.getElementById('z-'+v);
+  if(v==='aucune'){ud.zones=['aucune'];document.querySelectorAll('[id^="z-"]').forEach(function(c){c.classList.remove('on');c.innerHTML='';});chk.classList.add('on');chk.innerHTML='OK';}
   else{
-    const ai=ud.zones.indexOf('none');
-    if(ai>=0){ud.zones.splice(ai,1);document.getElementById('z-none').classList.remove('on');document.getElementById('z-none').innerHTML='';}
-    const idx=ud.zones.indexOf(v);
+    var ai=ud.zones.indexOf('aucune');
+    if(ai>=0){ud.zones.splice(ai,1);document.getElementById('z-aucune').classList.remove('on');document.getElementById('z-aucune').innerHTML='';}
+    var idx=ud.zones.indexOf(v);
     if(idx>=0){ud.zones.splice(idx,1);chk.classList.remove('on');chk.innerHTML='';}
-    else{ud.zones.push(v);chk.classList.add('on');chk.innerHTML='✓';}
+    else{ud.zones.push(v);chk.classList.add('on');chk.innerHTML='OK';}
   }
-  const b=document.getElementById('b7');if(b)b.disabled=ud.zones.length===0;
+  var b=document.getElementById('b7');if(b)b.disabled=ud.zones.length===0;
 }
 
-function togCGU(){cguOk=!cguOk;document.getElementById('cgu-chk').textContent=cguOk?'☑':'☐';checkB8();}
-function checkB8(){const b=document.getElementById('b8');if(b)b.disabled=!(emailVal.includes('@')&&emailVal.indexOf('.',emailVal.indexOf('@'))>0&&cguOk);}
+function togCGU(){cguOk=!cguOk;document.getElementById('cgu-chk').textContent=cguOk?'oui':'non';checkB8();}
+function checkB8(){var b=document.getElementById('b8');if(b)b.disabled=!(emailVal.indexOf('@')>=0&&emailVal.indexOf('.',emailVal.indexOf('@'))>0&&cguOk);}
 
 function fillRecap(){
-  const t=document.getElementById('taille').value,p=document.getElementById('poids').value,a=document.getElementById('age').value;
-  const prioLbl=ud.prio.includes('haut')&&ud.prio.includes('bas')?'Corps entier':ud.prio.includes('haut')?'Haut du corps':'Bas du corps';
-  document.getElementById('r-obj').textContent=ud.obj||'—';
-  document.getElementById('r-genre').textContent=(ud.genre||'—')+' - '+prioLbl;
+  var t=document.getElementById('taille').value,p=document.getElementById('poids').value,a=document.getElementById('age').value;
+  var prioLbl=ud.prio.indexOf('haut')>=0&&ud.prio.indexOf('bas')>=0?'Corps entier':ud.prio.indexOf('haut')>=0?'Haut du corps':'Bas du corps';
+  document.getElementById('r-obj').textContent=ud.obj||'-';
+  document.getElementById('r-genre').textContent=(ud.genre||'-')+' - '+prioLbl;
   document.getElementById('r-morpho').textContent=(t?t+'cm ':' ')+(p?p+'kg ':' ')+(a?a+' ans':'');
-  document.getElementById('r-niv').textContent=ud.niv||'—';
-  document.getElementById('r-plan').textContent=(ud.jours||'—')+' j/sem - '+(ud.duree||'—');
-  document.getElementById('r-equip').textContent=ud.equips.join(', ')||'—';
+  document.getElementById('r-niv').textContent=ud.niv||'-';
+  document.getElementById('r-plan').textContent=(ud.jours||'-')+' j/sem - '+(ud.duree||'-');
+  document.getElementById('r-equip').textContent=ud.equips.join(', ')||'-';
   emailVal='';cguOk=false;
   document.getElementById('email-disp').innerHTML='<span class="cursor"></span>';
-  document.getElementById('cgu-chk').textContent='☐';checkB8();
+  document.getElementById('cgu-chk').textContent='non';checkB8();
 }
 
-const AZERTY=[['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','.','-','_','@']];
-const NUMS=['1','2','3','4','5','6','7','8','9','0'];
+var AZERTY=[['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','.','-','_','@']];
+var NUMS=['1','2','3','4','5','6','7','8','9','0'];
 
 function buildKbd(){showNums=false;renderKbd();}
 function renderKbd(){
-  const zone=document.getElementById('kbd-zone');zone.innerHTML='';
+  var zone=document.getElementById('kbd-zone');zone.innerHTML='';
   if(!showNums){
-    AZERTY.forEach(row=>{const div=document.createElement('div');div.className='kbd-row';row.forEach(k=>{const btn=document.createElement('div');btn.className='key';btn.textContent=k;btn.addEventListener('pointerdown',e=>{e.preventDefault();emailVal+=k;updDisp();});div.appendChild(btn);});zone.appendChild(div);});
-    const r4=document.createElement('div');r4.className='kbd-row';
-    const bDel=document.createElement('div');bDel.className='key wide action';bDel.textContent='⌫';bDel.addEventListener('pointerdown',e=>{e.preventDefault();emailVal=emailVal.slice(0,-1);updDisp();});
-    const bSp=document.createElement('div');bSp.className='key wider';bSp.textContent='espace';bSp.addEventListener('pointerdown',e=>{e.preventDefault();emailVal+=' ';updDisp();});
-    const bN=document.createElement('div');bN.className='key wide';bN.textContent='123';bN.addEventListener('pointerdown',e=>{e.preventDefault();showNums=true;renderKbd();});
+    AZERTY.forEach(function(row){var div=document.createElement('div');div.className='kbd-row';row.forEach(function(k){var btn=document.createElement('div');btn.className='key';btn.textContent=k;btn.addEventListener('pointerdown',function(e){e.preventDefault();emailVal+=k;updDisp();});div.appendChild(btn);});zone.appendChild(div);});
+    var r4=document.createElement('div');r4.className='kbd-row';
+    var bDel=document.createElement('div');bDel.className='key wide action';bDel.textContent='Suppr';bDel.addEventListener('pointerdown',function(e){e.preventDefault();emailVal=emailVal.slice(0,-1);updDisp();});
+    var bSp=document.createElement('div');bSp.className='key wider';bSp.textContent='espace';bSp.addEventListener('pointerdown',function(e){e.preventDefault();emailVal+=' ';updDisp();});
+    var bN=document.createElement('div');bN.className='key wide';bN.textContent='123';bN.addEventListener('pointerdown',function(e){e.preventDefault();showNums=true;renderKbd();});
     r4.appendChild(bDel);r4.appendChild(bSp);r4.appendChild(bN);zone.appendChild(r4);
-    const r5=document.createElement('div');r5.className='kbd-row';
-    ['.com','.fr','@gmail.com','@hotmail.fr'].forEach(s=>{const b=document.createElement('div');b.className='key shortcut';b.textContent=s;b.addEventListener('pointerdown',e=>{e.preventDefault();emailVal+=s;updDisp();});r5.appendChild(b);});
+    var r5=document.createElement('div');r5.className='kbd-row';
+    ['.com','.fr','@gmail.com','@hotmail.fr'].forEach(function(s){var b=document.createElement('div');b.className='key shortcut';b.textContent=s;b.addEventListener('pointerdown',function(e){e.preventDefault();emailVal+=s;updDisp();});r5.appendChild(b);});
     zone.appendChild(r5);
   } else {
-    const r1=document.createElement('div');r1.className='kbd-row';
-    NUMS.forEach(n=>{const b=document.createElement('div');b.className='key';b.textContent=n;b.addEventListener('pointerdown',e=>{e.preventDefault();emailVal+=n;updDisp();});r1.appendChild(b);});
+    var r1=document.createElement('div');r1.className='kbd-row';
+    NUMS.forEach(function(n){var b=document.createElement('div');b.className='key';b.textContent=n;b.addEventListener('pointerdown',function(e){e.preventDefault();emailVal+=n;updDisp();});r1.appendChild(b);});
     zone.appendChild(r1);
-    const r2=document.createElement('div');r2.className='kbd-row';
-    const bABC=document.createElement('div');bABC.className='key wider';bABC.textContent='← ABC';bABC.addEventListener('pointerdown',e=>{e.preventDefault();showNums=false;renderKbd();});
-    const bDel2=document.createElement('div');bDel2.className='key wide action';bDel2.textContent='⌫';bDel2.addEventListener('pointerdown',e=>{e.preventDefault();emailVal=emailVal.slice(0,-1);updDisp();});
+    var r2=document.createElement('div');r2.className='kbd-row';
+    var bABC=document.createElement('div');bABC.className='key wider';bABC.textContent='ABC';bABC.addEventListener('pointerdown',function(e){e.preventDefault();showNums=false;renderKbd();});
+    var bDel2=document.createElement('div');bDel2.className='key wide action';bDel2.textContent='Suppr';bDel2.addEventListener('pointerdown',function(e){e.preventDefault();emailVal=emailVal.slice(0,-1);updDisp();});
     r2.appendChild(bABC);r2.appendChild(bDel2);zone.appendChild(r2);
   }
 }
@@ -410,47 +410,49 @@ function updDisp(){document.getElementById('email-disp').innerHTML=emailVal+'<sp
 async function generer(){
   ud.email=emailVal;
   go('s-gen');
-  const steps=['Analyzing profile...','Selecting exercises...','Building program...','Adding tips...','Done!'];
-  let si=0;
-  const iv=setInterval(()=>{
+  var steps=['Analyse du profil...','Selection des exercices...','Construction du programme...','Ajout des conseils...','Finalisation...'];
+  var si=0;
+  var iv=setInterval(function(){
     si++;
     document.getElementById('lbar-f').style.width=Math.min(85,Math.round((si/steps.length)*85))+'%';
     document.getElementById('gen-txt').textContent=steps[Math.min(si,steps.length-1)];
-    document.getElementById('gen-step').textContent='Step '+Math.min(si+1,steps.length)+'/'+steps.length;
+    document.getElementById('gen-step').textContent='Etape '+Math.min(si+1,steps.length)+'/'+steps.length;
   },800);
 
-  let ml='';
-  if(ud.equips.includes('machines')){ml+=' MACHINES: ';MACHINES.machines.forEach(m=>ml+=m.num+'-'+m.name+', ');}
-  if(ud.equips.includes('freeweights')){ml+=' FREEWEIGHTS: ';MACHINES.freeweights.forEach(m=>ml+=m.name+', ');}
-  if(ud.equips.includes('cardio')){ml+=' CARDIO: ';MACHINES.cardio.forEach(m=>ml+=m.name+', ');}
+  var ml='';
+  if(ud.equips.indexOf('machines')>=0){ml+=' MACHINES: ';MACHINES.machines.forEach(function(m){ml+=m.num+'-'+m.name+', ';});}
+  if(ud.equips.indexOf('poids libres')>=0){ml+=' POIDS LIBRES: ';MACHINES.poids_libres.forEach(function(m){ml+=m.name+', ';});}
+  if(ud.equips.indexOf('cardio')>=0){ml+=' CARDIO: ';MACHINES.cardio.forEach(function(m){ml+=m.name+', ';});}
 
-  const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'full body':ud.prio.includes('haut')?'upper body':'lower body';
-  const zonesText=ud.zones.includes('none')?'none':ud.zones.join(' ');
+  var prioText=ud.prio.indexOf('haut')>=0&&ud.prio.indexOf('bas')>=0?'corps entier':ud.prio.indexOf('haut')>=0?'haut du corps':'bas du corps';
+  var zonesText=ud.zones.indexOf('aucune')>=0?'aucune':ud.zones.join(' ');
 
-'REPONDRE EN FRANCAIS. JSON UNIQUEMENT. ZERO APOSTROPHE DANS LES VALEURS.    const res=await fetch('/api/generate',{
+  var prompt='Genere un programme de musculation en JSON. LANGUE FRANCAISE OBLIGATOIRE. PAS D APOSTROPHES DANS LES VALEURS JSON. Profil: objectif='+ud.obj+' genre='+ud.genre+' priorite='+prioText+' taille='+document.getElementById('taille').value+'cm poids='+document.getElementById('poids').value+'kg age='+document.getElementById('age').value+' niveau='+ud.niv+' frequence='+ud.jours+'j/semaine duree='+ud.duree+' zones a eviter='+zonesText+' equipements='+ml+' REPONDS UNIQUEMENT AVEC CE JSON VALIDE SANS AUCUNE APOSTROPHE: {"duree_programme":"4 semaines","organisation":"Full body","motivation":"Excellent travail","jours":[{"label":"Jour A","exercices":[{"num":"1","nom":"Leg press","series":"3","reps":"10","repos":"90s","conseil":"Bonne forme"}]}]}';
+
+  try{
+    var res=await fetch('/api/generate',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:4096,system:'Tu es un coach sportif. Reponds UNIQUEMENT en francais. Pas apostrophes dans JSON.',messages:[{role:'user',content:prompt}]
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:4096,system:'Tu es un coach sportif expert. Tu reponds UNIQUEMENT en francais. Tu ne mets JAMAIS d apostrophes dans les valeurs JSON.',messages:[{role:'user',content:prompt}]})
     });
-    const data=await res.json();
+    var data=await res.json();
     clearInterval(iv);
     document.getElementById('lbar-f').style.width='100%';
 
     if(data.ok && data.programme){
       generatedProgram=data.programme;
-      document.getElementById('gen-txt').textContent='Programme pret!';
-      setTimeout(()=>{
+      document.getElementById('gen-txt').textContent='Programme pret !';
+      setTimeout(function(){
         go('s-pdf');
         document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
         document.getElementById('btn-dest').textContent=ud.email;
-        document.getElementById('pdf-motiv').textContent=generatedProgram.motivation||'Good work!';
-        let html='<div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:.75rem;">'+
-          (generatedProgram.duree_programme||'')+' - '+ud.jours+' days/week - '+ud.duree+' - '+(generatedProgram.organisation||'')+'</div>';
+        document.getElementById('pdf-motiv').textContent=generatedProgram.motivation||'Bon travail !';
+        var html='<div style="font-size:11px;color:#6b7280;text-align:center;margin-bottom:.75rem;">'+(generatedProgram.duree_programme||'')+' - '+ud.jours+' j/sem - '+ud.duree+' - '+(generatedProgram.organisation||'')+'</div>';
         (generatedProgram.jours||[]).forEach(function(j){
           html+='<div class="day-block"><div class="day-badge">'+(j.label||'')+'</div>';
           (j.exercices||[]).forEach(function(ex){
             html+='<div class="ex-row"><div class="ex-num">'+(ex.num||'x')+'</div><span class="ex-name">'+(ex.nom||'')+'</span><span class="ex-sets">'+(ex.series||'')+'x'+(ex.reps||'')+' - '+(ex.repos||'')+'</span></div>';
-            if(ex.conseil)html+='<div style="font-size:11px;color:#6b7280;padding:2px 0 4px 30px;">tip: '+ex.conseil+'</div>';
+            if(ex.conseil)html+='<div style="font-size:11px;color:#6b7280;padding:2px 0 4px 30px;">'+ex.conseil+'</div>';
           });
           html+='</div>';
         });
@@ -472,18 +474,18 @@ function envoyer(){document.getElementById('ok-email').textContent=ud.email;go('
 function restart(){
   ud={obj:null,genre:null,prio:[],niv:null,jours:null,duree:null,equips:[],zones:[]};
   emailVal='';cguOk=false;showNums=false;generatedProgram=null;
-  document.querySelectorAll('.card-btn').forEach(b=>b.classList.remove('sel'));
-  document.querySelectorAll('.chk').forEach(c=>{c.classList.remove('on');c.innerHTML='';});
-  ['b1','b2','b4','b5','b6','b7','b8'].forEach(id=>{const b=document.getElementById(id);if(b)b.disabled=true;});
+  document.querySelectorAll('.card-btn').forEach(function(b){b.classList.remove('sel');});
+  document.querySelectorAll('.chk').forEach(function(c){c.classList.remove('on');c.innerHTML='';});
+  ['b1','b2','b4','b5','b6','b7','b8'].forEach(function(id){var b=document.getElementById(id);if(b)b.disabled=true;});
   document.getElementById('lbar-f').style.width='0%';
   document.getElementById('lbar-f').style.background='#1a1a1a';
   go('s-veille');
 }
 
-function startHold(){let p=0;const start=Date.now();holdInterval=setInterval(()=>{p=Math.min(100,((Date.now()-start)/2000)*100);document.getElementById('hold-fill').style.width=p+'%';if(p>=100){cancelHold();go('s-admin-login');}},30);}
+function startHold(){var p=0;var start=Date.now();holdInterval=setInterval(function(){p=Math.min(100,((Date.now()-start)/2000)*100);document.getElementById('hold-fill').style.width=p+'%';if(p>=100){cancelHold();go('s-admin-login');}},30);}
 function cancelHold(){clearInterval(holdInterval);holdInterval=null;document.getElementById('hold-fill').style.width='0%';}
-function doLogin(){const e=document.getElementById('a-email').value;if(!e)return;go('s-veille');}
-function doReg(){const n=document.getElementById('r-salle').value.trim(),e=document.getElementById('r-mail').value.trim();if(!n||!e)return;go('s-veille');}
+function doLogin(){var e=document.getElementById('a-email').value;if(!e)return;go('s-veille');}
+function doReg(){var n=document.getElementById('r-salle').value.trim(),e=document.getElementById('r-mail').value.trim();if(!n||!e)return;go('s-veille');}
 function showReg(){document.getElementById('lf').style.display='none';document.getElementById('rf').style.display='flex';}
 function showLogin(){document.getElementById('rf').style.display='none';document.getElementById('lf').style.display='flex';}
 </script>
