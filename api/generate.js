@@ -31,7 +31,7 @@ jsonStr = jsonStr.replace(/'/g, ' ').replace(/[\u2018\u2019\u02BC]/g, ' ').repla
         const programme = JSON.parse(jsonStr);
         return res.status(200).json({ ok: true, programme });
       } catch(e) {
-        return res.status(200).json({ ok: false, raw: text, error: e.message });
+      return res.status(200).json({ ok: false, raw: text, error: e.message, jsonStr: jsonStr.substring(0, 500) });
       }
     }
     return res.status(200).json({ ok: false, raw: text });
