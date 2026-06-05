@@ -18,7 +18,7 @@ module.exports = async function handler(req, res) {
     });
     const data = await response.json();
     const text = data?.content?.[0]?.text || '';
-   const cleanText = text.replace(/`{3}json/g,'').replace(/`{3}/g,'').trim();
+    const cleanText = text.replace(/\u0060{3}json/g,'').replace(/\u0060{3}/g,'').trim();
     const start = cleanText.indexOf('{');
     const end = cleanText.lastIndexOf('}');
     if (start !== -1 && end !== -1) {
