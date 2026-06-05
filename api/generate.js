@@ -24,7 +24,20 @@ module.exports = async function handler(req, res) {
     const match = text.match(/\{[\s\S]*\}/);
     
     if (match) {
-      let jsonStr = match[0].replace(/'/g, ' ');
+     let jsonStr = match[0];
+// Remplace apostrophes dans les valeurs string seulement
+let fixed = '';
+let inString = false;
+let escaped = false;
+for (let i = 0; i < jsonStr.length; i++) {
+  const c = jsonStr[i];
+  if (escaped) { fixed += c; escaped = false; continue; }
+  if (c === '\\') { fixed += c; escaped = true; continue; }
+  if (c === '"') { inString = !inString; fixed += c; continue; }
+  if (c === "'" && inString) { fixed += '\u2019'; continue; }
+  fixed += c;
+}
+jsonStr = fixed;
       try {
         const programme = JSON.parse(jsonStr);
         return res.status(200).json({ ok: true, programme });
