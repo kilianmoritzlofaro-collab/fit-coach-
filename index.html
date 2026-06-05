@@ -469,7 +469,17 @@ async function generer(){
   }
 }
 
-function envoyer(){document.getElementById('ok-email').textContent=ud.email;go('s-ok');}
+async function envoyer(){
+  document.getElementById('ok-email').textContent=ud.email;
+  try{
+    await fetch('/api/send',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:ud.email,programme:generatedProgram})
+    });
+  }catch(e){}
+  go('s-ok');
+}
 
 function restart(){
   ud={obj:null,genre:null,prio:[],niv:null,jours:null,duree:null,equips:[],zones:[]};
