@@ -427,8 +427,7 @@ async function generer(){
   const prioText=ud.prio.includes('haut')&&ud.prio.includes('bas')?'full body':ud.prio.includes('haut')?'upper body':'lower body';
   const zonesText=ud.zones.includes('none')?'none':ud.zones.join(' ');
 
-const prompt='Genere un programme de fitness en JSON uniquement. Langue: francais. Pas d apostrophes dans les valeurs. Equipment:'+ml+' Profil: objectif='+ud.obj+', genre='+ud.genre+', priorite='+prioText+', taille='+document.getElementById('taille').value+'cm, poids='+document.getElementById('poids').value+'kg, age='+document.getElementById('age').value+', niveau='+ud.niv+', frequence='+ud.jours+'j/semaine, duree='+ud.duree+', eviter='+zonesText+'. Reponds UNIQUEMENT avec ce JSON valide sans apostrophes: {"duree_programme":"X semaines","organisation":"desc","motivation":"message","jours":[{"label":"Jour A","exercices":[{"num":"1","nom":"Exercice","series":"3","reps":"10","repos":"90s","conseil":"conseil"}]}]}';
-  try{
+const prompt='Genere un programme fitness JSON uniquement, pas apostrophes, langue francais. Profil: objectif='+ud.obj+' genre='+ud.genre+' niveau='+ud.niv+' frequence='+ud.jours+'j/semaine duree='+ud.duree+' eviter='+zonesText+' equipements='+ml+' Reponds UNIQUEMENT avec JSON valide: {"duree_programme":"4 semaines","organisation":"Full body","motivation":"Bravo","jours":[{"label":"Jour A","exercices":[{"num":"1","nom":"Leg press","series":"3","reps":"10","repos":"90s","conseil":"Bon travail"}]}]}';  try{
     const res=await fetch('/api/generate',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
