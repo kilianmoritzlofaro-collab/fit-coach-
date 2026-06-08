@@ -62,6 +62,21 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
 .ex-sets{color:#6b7280;font-size:11px;white-space:nowrap;}
 .motiv-box{background:#f9fafb;border-left:3px solid #1a1a1a;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-bottom:1rem;font-size:12px;color:#374151;font-style:italic;line-height:1.6;}
 .hold-hint{font-size:11px;color:#d1d5db;text-align:center;margin-top:6px;}
+
+.admin-wrap{max-width:480px;margin:0 auto;width:100%;}
+.admin-card{background:#f9fafb;border-radius:12px;padding:1rem;margin-bottom:1rem;}
+.admin-input{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:10px 13px;font-size:14px;width:100%;margin-bottom:8px;}
+.admin-input:focus{outline:none;border-color:#1a1a1a;}
+.machine-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f3f4f6;}
+.machine-row:last-child{border-bottom:none;}
+.machine-num{background:#1a1a1a;color:#fff;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600;min-width:32px;text-align:center;}
+.machine-name{flex:1;font-size:13px;}
+.btn-del{background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:0 4px;}
+.stat-box{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:.75rem 1rem;text-align:center;}
+.stat-num{font-size:24px;font-weight:600;}
+.stat-lbl{font-size:11px;color:#6b7280;margin-top:2px;}
+.color-swatch{width:32px;height:32px;border-radius:8px;border:2px solid transparent;cursor:pointer;display:inline-block;}
+.color-swatch.sel{border-color:#1a1a1a;}
 </style>
 </head>
 <body>
@@ -269,26 +284,86 @@ body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
   </div>
 </div>
 
+
+<!-- ESPACE GERANT - LOGIN -->
 <div class="screen" id="s-admin-login">
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:360px;margin:0 auto;width:100%;">
-    <div style="font-size:11px;color:#6b7280;border:1px solid #e5e7eb;border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:1rem;">Espace gerant</div>
-    <div class="title">Connexion</div>
-    <div id="lf" style="display:flex;flex-direction:column;gap:10px;margin-bottom:1rem;">
-      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="email" id="a-email" placeholder="email@masalle.com"/>
-      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="password" id="a-pwd" placeholder="Mot de passe"/>
-      <button class="btn-p" style="margin:0;" onclick="doLogin()">Se connecter</button>
-      <button class="btn-s" style="margin:0;" onclick="showReg()">Creer un compte salle</button>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;" class="admin-wrap">
+    <div style="text-align:center;margin-bottom:2rem;">
+      <div style="font-size:32px;margin-bottom:.5rem;">🏋️</div>
+      <div style="font-size:18px;font-weight:600;">Espace gerant</div>
+      <div style="font-size:13px;color:#6b7280;margin-top:4px;">FitCoach</div>
     </div>
-    <div id="rf" style="display:none;flex-direction:column;gap:10px;margin-bottom:1rem;">
-      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="text" id="r-salle" placeholder="Nom de la salle"/>
-      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="email" id="r-mail" placeholder="email@masalle.com"/>
-      <input style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:11px 13px;font-size:14px;width:100%;" type="password" id="r-pwd" placeholder="Mot de passe"/>
-      <button class="btn-p" style="margin:0;" onclick="doReg()">Creer mon compte</button>
-      <button class="btn-s" style="margin:0;" onclick="showLogin()">J ai deja un compte</button>
+    <div id="al-form">
+      <input class="admin-input" type="email" id="al-email" placeholder="Email de la salle"/>
+      <input class="admin-input" type="password" id="al-pwd" placeholder="Mot de passe"/>
+      <div id="al-err" style="color:#ef4444;font-size:12px;margin-bottom:8px;display:none;"></div>
+      <button class="btn-p" onclick="adminLogin()">Se connecter</button>
+      <button class="btn-s" onclick="showAdminReg()">Creer un compte salle</button>
     </div>
-    <button class="btn-back" onclick="go('s-veille')" style="justify-content:center;margin-top:.5rem;">Retour</button>
+    <div id="ar-form" style="display:none;">
+      <input class="admin-input" type="text" id="ar-nom" placeholder="Nom de la salle (ex: Fitness Club Lyon)"/>
+      <input class="admin-input" type="text" id="ar-id" placeholder="Identifiant unique (ex: fitness-lyon)"/>
+      <input class="admin-input" type="email" id="ar-email" placeholder="Email"/>
+      <input class="admin-input" type="password" id="ar-pwd" placeholder="Mot de passe"/>
+      <div id="ar-err" style="color:#ef4444;font-size:12px;margin-bottom:8px;display:none;"></div>
+      <button class="btn-p" onclick="adminRegister()">Creer mon espace</button>
+      <button class="btn-s" onclick="showAdminLogin()">J ai deja un compte</button>
+    </div>
+    <button class="btn-back" onclick="go('s-veille')" style="justify-content:center;margin-top:1rem;">Retour a la borne</button>
   </div>
 </div>
+
+<!-- ESPACE GERANT - DASHBOARD -->
+<div class="screen" id="s-admin">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+    <div>
+      <div style="font-size:18px;font-weight:600;" id="ad-nom">Ma salle</div>
+      <div style="font-size:12px;color:#6b7280;" id="ad-id-disp"></div>
+    </div>
+    <button onclick="adminLogout()" style="background:none;border:1px solid #e5e7eb;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;color:#6b7280;">Deconnexion</button>
+  </div>
+
+  <!-- Stats -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem;">
+    <div class="stat-box"><div class="stat-num" id="ad-stat-total">0</div><div class="stat-lbl">Programmes generes</div></div>
+    <div class="stat-box"><div class="stat-num" id="ad-stat-today">0</div><div class="stat-lbl">Aujourd hui</div></div>
+  </div>
+
+  <!-- URL de la borne -->
+  <div class="admin-card" style="margin-bottom:1rem;">
+    <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;">URL de votre borne</div>
+    <div style="font-size:12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:8px;word-break:break-all;" id="ad-url"></div>
+    <button onclick="copyUrl()" style="background:none;border:none;font-size:12px;color:#1a1a1a;cursor:pointer;margin-top:6px;text-decoration:underline;">Copier le lien</button>
+  </div>
+
+  <!-- Couleur -->
+  <div class="admin-card">
+    <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;">Couleur de la salle</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;" id="ad-colors">
+      <div class="color-swatch" style="background:#1a1a1a;" data-color="#1a1a1a" onclick="selectColor(this)"></div>
+      <div class="color-swatch" style="background:#2563eb;" data-color="#2563eb" onclick="selectColor(this)"></div>
+      <div class="color-swatch" style="background:#16a34a;" data-color="#16a34a" onclick="selectColor(this)"></div>
+      <div class="color-swatch" style="background:#dc2626;" data-color="#dc2626" onclick="selectColor(this)"></div>
+      <div class="color-swatch" style="background:#9333ea;" data-color="#9333ea" onclick="selectColor(this)"></div>
+      <div class="color-swatch" style="background:#ea580c;" data-color="#ea580c" onclick="selectColor(this)"></div>
+    </div>
+  </div>
+
+  <!-- Machines -->
+  <div style="font-size:12px;font-weight:500;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin:1rem 0 .5rem;">Machines de la salle</div>
+  <div class="admin-card">
+    <div id="ad-machines-list"></div>
+    <div style="display:flex;gap:8px;margin-top:10px;">
+      <input class="admin-input" style="margin:0;flex:1;" type="text" id="ad-m-num" placeholder="N° (ex: 14)"/>
+      <input class="admin-input" style="margin:0;flex:3;" type="text" id="ad-m-nom" placeholder="Nom (ex: Chest press)"/>
+      <button onclick="addMachine()" style="background:#1a1a1a;color:#fff;border:none;border-radius:8px;padding:0 14px;cursor:pointer;font-size:18px;">+</button>
+    </div>
+  </div>
+
+  <button class="btn-p" onclick="saveSalle()" style="margin-top:1rem;">Sauvegarder les modifications</button>
+  <div id="ad-save-msg" style="text-align:center;font-size:13px;color:#16a34a;display:none;margin-top:8px;">Modifications sauvegardees !</div>
+</div>
+
 
 </div>
 
@@ -530,10 +605,132 @@ function restart(){
 
 function startHold(){var p=0;var start=Date.now();holdInterval=setInterval(function(){p=Math.min(100,((Date.now()-start)/2000)*100);document.getElementById('hold-fill').style.width=p+'%';if(p>=100){cancelHold();go('s-admin-login');}},30);}
 function cancelHold(){clearInterval(holdInterval);holdInterval=null;document.getElementById('hold-fill').style.width='0%';}
-function doLogin(){var e=document.getElementById('a-email').value;if(!e)return;go('s-veille');}
-function doReg(){var n=document.getElementById('r-salle').value.trim(),e=document.getElementById('r-mail').value.trim();if(!n||!e)return;go('s-veille');}
-function showReg(){document.getElementById('lf').style.display='none';document.getElementById('rf').style.display='flex';}
-function showLogin(){document.getElementById('rf').style.display='none';document.getElementById('lf').style.display='flex';}
+// ADMIN
+var currentSalle = null;
+
+function showAdminReg(){document.getElementById('al-form').style.display='none';document.getElementById('ar-form').style.display='block';}
+function showAdminLogin(){document.getElementById('ar-form').style.display='none';document.getElementById('al-form').style.display='block';}
+
+async function adminLogin(){
+  var email=document.getElementById('al-email').value.trim();
+  var pwd=document.getElementById('al-pwd').value;
+  var err=document.getElementById('al-err');
+  err.style.display='none';
+  if(!email||!pwd){err.textContent='Remplissez tous les champs';err.style.display='block';return;}
+  try{
+    var r=await fetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'login',email:email,password:pwd})});
+    var d=await r.json();
+    if(d.ok){currentSalle=d.salle;loadAdminDashboard();}
+    else{err.textContent=d.error||'Email ou mot de passe incorrect';err.style.display='block';}
+  }catch(e){err.textContent='Erreur de connexion';err.style.display='block';}
+}
+
+async function adminRegister(){
+  var nom=document.getElementById('ar-nom').value.trim();
+  var id=document.getElementById('ar-id').value.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-');
+  var email=document.getElementById('ar-email').value.trim();
+  var pwd=document.getElementById('ar-pwd').value;
+  var err=document.getElementById('ar-err');
+  err.style.display='none';
+  if(!nom||!id||!email||!pwd){err.textContent='Remplissez tous les champs';err.style.display='block';return;}
+  try{
+    var r=await fetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'register',nom:nom,id:id,email:email,password:pwd})});
+    var d=await r.json();
+    if(d.ok){currentSalle=d.salle;loadAdminDashboard();}
+    else{err.textContent=d.error||'Erreur creation compte';err.style.display='block';}
+  }catch(e){err.textContent='Erreur de connexion';err.style.display='block';}
+}
+
+function loadAdminDashboard(){
+  if(!currentSalle)return;
+  document.getElementById('ad-nom').textContent=currentSalle.nom||'Ma salle';
+  document.getElementById('ad-id-disp').textContent='ID: '+currentSalle.id;
+  var url=window.location.origin+'?salle='+currentSalle.id;
+  document.getElementById('ad-url').textContent=url;
+  document.getElementById('ad-stat-total').textContent=currentSalle.stats_total||0;
+  document.getElementById('ad-stat-today').textContent=currentSalle.stats_today||0;
+  // Couleur
+  document.querySelectorAll('.color-swatch').forEach(function(s){
+    s.classList.remove('sel');
+    if(s.dataset.color===currentSalle.couleur)s.classList.add('sel');
+  });
+  // Machines
+  renderAdminMachines();
+  go('s-admin');
+}
+
+function renderAdminMachines(){
+  var list=document.getElementById('ad-machines-list');
+  var machines=currentSalle.machines||[];
+  if(machines.length===0){list.innerHTML='<div style="font-size:13px;color:#6b7280;padding:8px 0;">Aucune machine - Ajoutez vos machines ci-dessous</div>';return;}
+  list.innerHTML=machines.map(function(m,i){
+    return '<div class="machine-row"><span class="machine-num">'+(m.num||'?')+'</span><span class="machine-name">'+(m.nom||m.name||'')+'</span><button class="btn-del" onclick="delMachine('+i+')">✕</button></div>';
+  }).join('');
+}
+
+function addMachine(){
+  var num=document.getElementById('ad-m-num').value.trim();
+  var nom=document.getElementById('ad-m-nom').value.trim();
+  if(!nom)return;
+  if(!currentSalle.machines)currentSalle.machines=[];
+  currentSalle.machines.push({num:num||'?',nom:nom});
+  document.getElementById('ad-m-num').value='';
+  document.getElementById('ad-m-nom').value='';
+  renderAdminMachines();
+}
+
+function delMachine(i){
+  currentSalle.machines.splice(i,1);
+  renderAdminMachines();
+}
+
+function selectColor(el){
+  document.querySelectorAll('.color-swatch').forEach(function(s){s.classList.remove('sel');});
+  el.classList.add('sel');
+  currentSalle.couleur=el.dataset.color;
+}
+
+function copyUrl(){
+  var url=window.location.origin+'?salle='+currentSalle.id;
+  navigator.clipboard.writeText(url).then(function(){alert('URL copiee !');});
+}
+
+async function saveSalle(){
+  try{
+    var r=await fetch('/api/admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'save',salle:currentSalle})});
+    var d=await r.json();
+    if(d.ok){
+      var msg=document.getElementById('ad-save-msg');
+      msg.style.display='block';
+      setTimeout(function(){msg.style.display='none';},3000);
+    }
+  }catch(e){alert('Erreur sauvegarde');}
+}
+
+function adminLogout(){currentSalle=null;go('s-veille');}
+
+// Charger la salle depuis l URL au demarrage
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var salleId=params.get('salle');
+  if(salleId){
+    fetch('/api/salle?id='+salleId).then(function(r){return r.json();}).then(function(d){
+      if(d.ok&&d.salle){
+        var s=d.salle;
+        var couleur=s.couleur||'#1a1a1a';
+        document.getElementById('v-salle').textContent=s.nom||'FitCoach';
+        document.getElementById('h-salle').textContent=s.nom||'FitCoach';
+        document.querySelectorAll('.btn-p').forEach(function(b){b.style.background=couleur;});
+        document.querySelectorAll('.day-badge,.ex-num').forEach(function(b){b.style.background=couleur;});
+        document.querySelector('.lbar-f').style.background=couleur;
+        // Remplacer les machines par celles de la salle
+        if(s.machines&&s.machines.length>0){
+          MACHINES.machines=s.machines.map(function(m){return {num:m.num,name:m.nom||m.name};});
+        }
+      }
+    }).catch(function(){});
+  }
+})();
 </script>
 </body>
 </html>
