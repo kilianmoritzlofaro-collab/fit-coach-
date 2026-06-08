@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>FitCoach</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<title>FitCoach</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:system-ui,sans-serif;background:#fff;color:#111;}
@@ -473,84 +473,47 @@ async function envoyer(){
   document.getElementById('ok-email').textContent=ud.email;
   go('s-ok');
   try{
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    let y = 20;
-    doc.setFontSize(20);
-    doc.setFont('helvetica','bold');
-    doc.text('FitCoach', 105, y, {align:'center'});
-    y += 8;
-    doc.setFontSize(10);
-    doc.setFont('helvetica','normal');
-    doc.setTextColor(107,114,128);
-    doc.text(new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'}), 105, y, {align:'center'});
-    y += 10;
-    doc.setFontSize(11);
-    doc.setTextColor(55,65,81);
-    doc.setFont('helvetica','italic');
-    var motiv=generatedProgram.motivation||'Bon travail !';
-    var motivLines=doc.splitTextToSize(motiv, 170);
-    doc.text(motivLines, 20, y);
-    y += motivLines.length * 6 + 8;
-    doc.setFont('helvetica','normal');
-    doc.setTextColor(17,17,17);
+    var jsPDF=window.jspdf.jsPDF;
+    var doc=new jsPDF();
+    var y=20;
+    doc.setFontSize(20);doc.setFont('helvetica','bold');
+    doc.text('FitCoach',105,y,{align:'center'});y+=8;
+    doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(107,114,128);
+    doc.text(new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'}),105,y,{align:'center'});y+=10;
+    doc.setFontSize(11);doc.setTextColor(55,65,81);doc.setFont('helvetica','italic');
+    var motiv=generatedProgram.motivation||'Bon travail';
+    var motivLines=doc.splitTextToSize(motiv,170);
+    doc.text(motivLines,20,y);y+=motivLines.length*6+8;
+    doc.setFont('helvetica','normal');doc.setTextColor(17,17,17);
     (generatedProgram.jours||[]).forEach(function(j){
-      if(y > 260){doc.addPage();y=20;}
+      if(y>260){doc.addPage();y=20;}
       doc.setFillColor(26,26,26);
-      doc.roundedRect(20, y-4, 170, 8, 2, 2, 'F');
-      doc.setTextColor(255,255,255);
-      doc.setFontSize(10);
-      doc.setFont('helvetica','bold');
-      doc.text(j.label||'', 105, y+1, {align:'center'});
-      y += 10;
+      doc.roundedRect(20,y-4,170,8,2,2,'F');
+      doc.setTextColor(255,255,255);doc.setFontSize(10);doc.setFont('helvetica','bold');
+      doc.text(j.label||'',105,y+1,{align:'center'});y+=10;
       doc.setTextColor(17,17,17);
       (j.exercices||[]).forEach(function(ex){
-        if(y > 265){doc.addPage();y=20;}
-        doc.setFontSize(10);
-        doc.setFont('helvetica','bold');
-        doc.text((ex.num||'x')+'. '+(ex.nom||''), 20, y);
-        doc.setFont('helvetica','normal');
-        doc.setTextColor(107,114,128);
-        doc.text((ex.series||'')+'x'+(ex.reps||'')+' - '+(ex.repos||''), 190, y, {align:'right'});
-        y += 5;
+        if(y>265){doc.addPage();y=20;}
+        doc.setFontSize(10);doc.setFont('helvetica','bold');
+        doc.text((ex.num||'x')+'. '+(ex.nom||''),20,y);
+        doc.setFont('helvetica','normal');doc.setTextColor(107,114,128);
+        doc.text((ex.series||'')+'x'+(ex.reps||'')+' - '+(ex.repos||''),190,y,{align:'right'});
+        y+=5;
         if(ex.conseil){
-          doc.setFontSize(9);
-          doc.setTextColor(107,114,128);
-          doc.setFont('helvetica','italic');
-          var lines=doc.splitTextToSize('   '+ex.conseil, 165);
-          doc.text(lines, 20, y);
-          y += lines.length * 4 + 2;
+          doc.setFontSize(9);doc.setTextColor(107,114,128);doc.setFont('helvetica','italic');
+          var lines=doc.splitTextToSize(ex.conseil,165);
+          doc.text(lines,25,y);y+=lines.length*4+2;
         }
-        doc.setDrawColor(243,244,246);
-        doc.line(20, y, 190, y);
-        y += 4;
+        doc.setDrawColor(243,244,246);doc.line(20,y,190,y);y+=4;
         doc.setTextColor(17,17,17);
       });
-      y += 4;
+      y+=4;
     });
-    doc.setFontSize(9);
-    doc.setTextColor(156,163,175);
-    doc.setFont('helvetica','normal');
-    doc.text('FitCoach - Donnees supprimees apres envoi', 105, 285, {align:'center'});
-    var pdfBase64 = doc.output('datauristring').split(',')[1];
-    await fetch('/api/send',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email:ud.email,programme:generatedProgram,pdfBase64:pdfBase64})
-    });
-  }catch(e){
-    console.error('Erreur envoi:',e);
-  }
-}
-  document.getElementById('ok-email').textContent=ud.email;
-  try{
-    await fetch('/api/send',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email:ud.email,programme:generatedProgram})
-    });
-  }catch(e){}
-  go('s-ok');
+    doc.setFontSize(9);doc.setTextColor(156,163,175);
+    doc.text('FitCoach - Donnees supprimees apres envoi',105,285,{align:'center'});
+    var pdfBase64=doc.output('datauristring').split(',')[1];
+    await fetch('/api/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:ud.email,programme:generatedProgram,pdfBase64:pdfBase64})});
+  }catch(e){console.error('Erreur PDF:',e);}
 }
 
 function restart(){
